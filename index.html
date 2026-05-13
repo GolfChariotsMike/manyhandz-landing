@@ -304,6 +304,32 @@
     .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
 
+    /* ========== PRO TIER DROPDOWN ========== */
+    .pro-select {
+      width: 100%;
+      padding: 10px 40px 10px 14px;
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      background: var(--white);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .pro-select:hover, .pro-select:focus {
+      border-color: var(--gold-dark);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.18);
+    }
+    .pro-select option { font-weight: 500; }
+
     /* ========== RESPONSIVE ========== */
     @media (max-width: 900px) {
       .ps-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -451,43 +477,57 @@
   <section class="pricing" id="pricing">
     <div class="container">
       <div class="section-header">
-        <h2>Pay only for what you use.</h2>
-        <p>Every plan includes $10 in AI credits each month — enough for most everyday tasks. Top up only when you need more. Don't use it, don't pay for it.</p>
+        <h2>Simple, transparent pricing.</h2>
+        <p>Every plan includes the same powerful features. The only difference is how many AI credits you get each month.</p>
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 860px; margin: 0 auto;">
+      <div class="pricing-grid" style="max-width: 860px; margin: 0 auto;">
 
-        <div class="pricing-card popular" style="transform: none;">
-          <div class="popular-badge">14-Day Free Trial</div>
-          <div class="plan-name">ManyHandz</div>
-          <div class="plan-price">$49<span>/mo</span></div>
-          <div class="plan-subtitle">Includes $10 AI credits monthly. Top up anytime — only pay for what you use.</div>
+        <!-- Tile 1: Starter -->
+        <div class="pricing-card">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">$29<span>/mo</span></div>
+          <div class="plan-subtitle">Perfect for getting started<br><strong style="color: var(--navy);">$10 in AI credits</strong> included every month</div>
           <ul class="plan-features">
-            <li>$10 in AI credits included every month</li>
             <li>Full AI assistant — voice &amp; chat</li>
             <li>Personalised onboarding &amp; business memory</li>
             <li>Email, calendar &amp; tool integrations</li>
             <li>Automation &amp; custom software builds</li>
             <li>Connect any tool you already use</li>
-            <li>Australian-owned &amp; operated</li>
-            <li>Cancel anytime — no lock-in</li>
+            <li>14-day free trial</li>
+            <li>Cancel anytime</li>
           </ul>
-          <a href="https://manyhandz.ai/signup" class="btn btn-outline-navy">Start free trial</a>
+          <a href="https://manyhandz.ai/signup?plan=starter" class="btn btn-outline-navy">Start free trial</a>
         </div>
 
-        <div class="pricing-card">
-          <div class="plan-name">AI Credits</div>
-          <div class="plan-price" style="font-size: 2rem;">Prepaid</div>
-          <div class="plan-subtitle">Buy credits upfront. Use them whenever you need. Don't use them — don't pay.</div>
+        <!-- Tile 2: Pro (with dropdown) -->
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="plan-name">Pro</div>
+
+          <!-- Custom dropdown selector -->
+          <div class="pro-tier-selector" style="margin-bottom: 16px;">
+            <div class="custom-select-wrapper" style="position: relative;">
+              <select id="pro-tier-select" class="pro-select">
+                <option value="pro-growth" data-price="59" data-credits="30">Growth — $59/mo</option>
+                <option value="pro-business" data-price="119" data-credits="80">Business — $119/mo</option>
+                <option value="pro-scale" data-price="199" data-credits="160">Scale — $199/mo</option>
+                <option value="pro-enterprise" data-price="399" data-credits="500">Enterprise — $399/mo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="plan-price" id="pro-price">$59<span>/mo</span></div>
+          <div class="plan-subtitle">For businesses that use AI daily<br><strong style="color: var(--navy);" id="pro-credits">$30 in AI credits</strong> included every month</div>
           <ul class="plan-features">
-            <li>$10 free credits included with your plan every month</li>
-            <li>$50, $100, or $250 credit packs</li>
-            <li>Credits never expire</li>
-            <li>Auto-reload when running low (optional)</li>
-            <li>Live balance &amp; usage dashboard</li>
-            <li>See exactly what each conversation cost</li>
-            <li>Most businesses spend $20–50/month</li>
+            <li>Full AI assistant — voice &amp; chat</li>
+            <li>Personalised onboarding &amp; business memory</li>
+            <li>Email, calendar &amp; tool integrations</li>
+            <li>Automation &amp; custom software builds</li>
+            <li>Connect any tool you already use</li>
+            <li>14-day free trial</li>
+            <li>Cancel anytime</li>
           </ul>
-          <a href="https://manyhandz.ai/signup" class="btn btn-outline-navy">Get started</a>
+          <a href="https://manyhandz.ai/signup?plan=pro-growth" class="btn btn-outline-navy" id="pro-cta">Start free trial</a>
         </div>
 
       </div>
@@ -645,6 +685,26 @@
       });
     }, { rootMargin: '-30% 0px -60% 0px' });
     sections.forEach(s => observer.observe(s));
+
+    // --- Pro tier dropdown ---
+    const proSelect = document.getElementById('pro-tier-select');
+    const proPrice = document.getElementById('pro-price');
+    const proCredits = document.getElementById('pro-credits');
+    const proCta = document.getElementById('pro-cta');
+
+    function updateProTile() {
+      const selected = proSelect.options[proSelect.selectedIndex];
+      const price = selected.dataset.price;
+      const credits = selected.dataset.credits;
+      const plan = selected.value;
+      proPrice.innerHTML = `$${price}<span>/mo</span>`;
+      proCredits.textContent = `$${credits} in AI credits`;
+      proCta.href = `https://manyhandz.ai/signup?plan=${plan}`;
+    }
+
+    if (proSelect) {
+      proSelect.addEventListener('change', updateProTile);
+    }
 
     // --- Form submit handler ---
     const form = document.getElementById('contact-form');
