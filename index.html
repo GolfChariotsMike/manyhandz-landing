@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManyHandz — One AI. Many hands.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #334155;
+      background: #fff;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ========== VARIABLES ========== */
+    :root {
+      --navy: #0f1f3d;
+      --navy-light: #162b52;
+      --gold: #c9a84c;
+      --gold-dark: #b8963e;
+      --gold-light: #e8c97a;
+      --white: #ffffff;
+      --slate: #334155;
+      --slate-light: #64748b;
+      --bg-light: #f8f9fb;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(15, 31, 61, 0.08);
+      --shadow-lg: 0 8px 40px rgba(15, 31, 61, 0.14);
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1, h2, h3, h4 { color: var(--navy); font-weight: 700; line-height: 1.2; }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    h3 { font-size: 1.2rem; }
+    p { color: var(--slate); }
+
+    /* ========== LAYOUT ========== */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 96px 0; }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--navy);
+      border-color: var(--gold);
+    }
+    .btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,168,76,0.35); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .btn-outline-navy {
+      background: transparent; color: var(--navy);
+      border-color: var(--navy);
+    }
+    .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+
+    /* ========== NAV ========== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(15,31,61,0.1); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--navy);
+      text-decoration: none; letter-spacing: -0.5px; display: flex; align-items: center; gap: 2px;
+    }
+    .nav-logo .dot { color: var(--gold); font-size: 1.8rem; line-height: 1; margin-left: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      color: var(--slate); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      padding: 8px 14px; border-radius: 6px; transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); background: var(--bg-light); }
+    .nav-links .btn-gold { padding: 9px 20px; font-size: 0.9rem; }
+    .nav-links .btn-gold:hover { transform: none; }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; display: block; transition: all 0.3s; }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 4px;
+      padding: 12px 24px 20px; border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--slate); text-decoration: none; font-weight: 500;
+      padding: 10px 12px; border-radius: 6px; transition: background 0.2s;
+    }
+    .mobile-menu a:hover { background: var(--bg-light); }
+    .mobile-menu .btn-gold { text-align: center; margin-top: 8px; }
+
+    /* ========== HERO ========== */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3460 60%, #0d2040 100%);
+      padding: 100px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light); font-size: 0.85rem; font-weight: 500;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 28px;
+    }
+    .hero h1 { color: var(--white); margin-bottom: 24px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      color: rgba(255,255,255,0.8); font-size: 1.2rem;
+      max-width: 620px; margin-bottom: 40px; line-height: 1.7;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+    .hero-trust {
+      color: rgba(255,255,255,0.55); font-size: 0.9rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ========== PROBLEM / SOLUTION ========== */
+    .problem-solution { background: var(--bg-light); }
+    .ps-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .ps-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 40px; box-shadow: var(--shadow);
+    }
+    .ps-card.solution { border-top: 4px solid var(--gold); }
+    .ps-card.problem { border-top: 4px solid #e2e8f0; }
+    .ps-card h3 { font-size: 1.35rem; margin-bottom: 20px; }
+    .ps-card.problem h3 { color: var(--slate); }
+    .ps-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .ps-card ul li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.97rem; color: var(--slate);
+    }
+    .ps-card.problem ul li::before {
+      content: '—'; color: var(--slate-light); font-weight: 600;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .ps-card.solution ul li::before {
+      content: '✓'; color: var(--gold); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ========== FEATURES ========== */
+    .features { background: var(--white); }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header p { color: var(--slate-light); font-size: 1.1rem; margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+    .feature-card {
+      padding: 32px 28px; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--white);
+      transition: all 0.25s ease;
+    }
+    .feature-card:hover { box-shadow: var(--shadow-lg); border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+    .feature-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+    .feature-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: var(--navy); }
+    .feature-card p { font-size: 0.93rem; color: var(--slate-light); line-height: 1.6; }
+
+    /* ========== PRICING ========== */
+    .pricing { background: var(--bg-light); }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start;
+    }
+    .pricing-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 36px 32px; border: 2px solid var(--border);
+      position: relative; transition: box-shadow 0.25s;
+    }
+    .pricing-card:hover { box-shadow: var(--shadow-lg); }
+    .pricing-card.popular {
+      border-color: var(--gold); box-shadow: var(--shadow-lg);
+      transform: scale(1.03);
+    }
+    .popular-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--navy);
+      font-size: 0.78rem; font-weight: 700; padding: 4px 16px; border-radius: 100px;
+      white-space: nowrap; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .plan-name { font-size: 0.9rem; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .plan-price { font-size: 2.8rem; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+    .plan-price span { font-size: 1.1rem; font-weight: 500; color: var(--slate-light); }
+    .plan-subtitle { color: var(--slate-light); font-size: 0.9rem; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .plan-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.93rem; color: var(--slate);
+    }
+    .plan-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+    .pricing-card.popular .btn-outline-navy {
+      background: var(--navy); color: var(--white); border-color: var(--navy);
+    }
+    .pricing-card.popular .btn-outline-navy:hover { background: var(--navy-light); }
+
+    /* ========== SOCIAL PROOF ========== */
+    .social-proof { background: var(--white); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--bg-light); border-radius: var(--radius);
+      padding: 32px; border: 1px solid var(--border);
+    }
+    .testimonial-card blockquote {
+      font-style: italic; color: var(--slate); font-size: 0.97rem;
+      line-height: 1.7; margin-bottom: 20px;
+    }
+    .testimonial-card blockquote::before { content: '\201C'; color: var(--gold); font-size: 2rem; line-height: 0; vertical-align: -0.5rem; margin-right: 4px; }
+    .testimonial-author { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+    .testimonial-business { font-size: 0.85rem; color: var(--slate-light); margin-top: 2px; }
+    .trusted-label { text-align: center; color: var(--slate-light); font-size: 1rem; font-weight: 500; margin-bottom: 8px; letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.85rem; }
+
+    /* ========== CONTACT ========== */
+    .contact { background: var(--navy); padding: 96px 0; }
+    .contact h2 { color: var(--white); }
+    .contact .section-header p { color: rgba(255,255,255,0.65); }
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 56px; }
+    .contact-info h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 16px; }
+    .contact-info p { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
+    .contact-direct { color: rgba(255,255,255,0.55); font-size: 0.95rem; margin-top: 32px; }
+    .contact-direct a { color: var(--gold); text-decoration: none; font-weight: 500; }
+    .contact-direct a:hover { text-decoration: underline; }
+    .contact-form { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 40px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; color: rgba(255,255,255,0.8); font-size: 0.88rem; font-weight: 500; margin-bottom: 8px; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 12px 16px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; color: var(--white); font-family: 'Inter', sans-serif;
+      font-size: 0.97rem; transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); background: rgba(255,255,255,0.1); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-submit { width: 100%; justify-content: center; font-size: 1rem; padding: 14px; }
+    .thank-you {
+      display: none; text-align: center; padding: 48px 24px;
+      color: var(--white);
+    }
+    .thank-you .tick { font-size: 3rem; margin-bottom: 16px; }
+    .thank-you h3 { color: var(--gold); margin-bottom: 12px; font-size: 1.5rem; }
+    .thank-you p { color: rgba(255,255,255,0.7); }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: #08131f; padding: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .footer-brand strong { color: var(--white); }
+    .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .ps-grid { grid-template-columns: 1fr; gap: 24px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pricing-card.popular { transform: scale(1); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 64px 0; }
+      .hero { padding: 72px 0 64px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero-ctas { flex-direction: column; gap: 12px; }
+      .hero-ctas .btn { justify-content: center; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav id="main-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">manyhandz<span class="dot">.</span></a>
+        <div class="nav-links">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#pricing" class="nav-link">Pricing</a>
+          <a href="https://manyhandz.ai/signup" class="btn btn-gold">Get Started</a>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://manyhandz.ai/signup" class="btn btn-gold">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>🇦🇺</span> Fully managed AI for Australian businesses
+        </div>
+        <h1>One AI.<br /><span>Many hands.</span></h1>
+        <p class="hero-sub">
+          A fully managed AI assistant for your business. It knows your team, your tools, and your tone — and it actually gets things done.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://manyhandz.ai/signup" class="btn btn-gold">Get Started</a>
+          <a href="#features" class="btn btn-outline">See how it works</a>
+        </div>
+        <div class="hero-trust">
+          🇦🇺 &nbsp;Built and operated in Perth, Australia
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROBLEM / SOLUTION ========== -->
+  <section class="problem-solution" id="about">
+    <div class="container">
+      <div class="ps-grid">
+        <div class="ps-card problem">
+          <h3>Running a business is already a full-time job.</h3>
+          <ul>
+            <li>Too many tools, none of them talking to each other</li>
+            <li>Not enough hours — your to-do list outlives the day</li>
+            <li>Generic AI that doesn't know your business, your clients, or your tone</li>
+            <li>Advice that sounds good but doesn't actually get done</li>
+            <li>Setup time you don't have for software you might not use</li>
+          </ul>
+        </div>
+        <div class="ps-card solution">
+          <h3>ManyHandz is different.</h3>
+          <ul>
+            <li>Knows your business deeply — your team, clients, suppliers, and context</li>
+            <li>Does things, not just suggests them — real output, real results</li>
+            <li>Fully managed — nothing to set up, nothing to maintain</li>
+            <li>Works across voice, chat, email, calendar, and your existing tools</li>
+            <li>Operated by a local Australian team who actually picks up the phone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Everything your business needs, handled.</h2>
+        <p>ManyHandz works across every part of your business — from your inbox to your workflows.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">💬</span>
+          <h3>Voice &amp; Chat</h3>
+          <p>Talk or type. Works on any device, any time. Get answers, delegate tasks, and stay in control without sitting at a desk.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📧</span>
+          <h3>Email &amp; Calendar</h3>
+          <p>Drafts replies in your tone, manages your schedule, and keeps your inbox from running your day.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔧</span>
+          <h3>Automation &amp; Builds</h3>
+          <p>Builds tools, runs workflows, and connects your apps — so the repetitive work happens without you.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧠</span>
+          <h3>Business Memory</h3>
+          <p>Remembers your team, clients, suppliers, and context. No more re-explaining the same things every time.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <h3>Private &amp; Secure</h3>
+          <p>Your data stays yours. No sharing between clients, no training on your information. Operated with strict data discipline.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🇦🇺</span>
+          <h3>Australian Operated</h3>
+          <p>Hosted and managed from Perth, WA. Talk to real people, not a support queue. We're in your timezone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Simple, transparent pricing.</h2>
+        <p>No hidden fees, no lock-in contracts. Start with what you need and scale as you grow.</p>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">$99<span>/mo</span></div>
+          <div class="plan-subtitle">For small businesses getting started with AI</div>
+          <ul class="plan-features">
+            <li>1M tokens per month</li>
+            <li>Shared infrastructure</li>
+            <li>Voice &amp; Chat</li>
+            <li>Email &amp; Calendar</li>
+            <li>Business memory setup</li>
+            <li>Australian support</li>
+          </ul>
+          <a href="https://manyhandz.ai/signup" class="btn btn-outline-navy">Get started</a>
+        </div>
+
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="plan-name">Builder</div>
+          <div class="plan-price">$299<span>/mo</span></div>
+          <div class="plan-subtitle">For growing businesses that want more done</div>
+          <ul class="plan-features">
+            <li>5M tokens per month</li>
+            <li>Dedicated setup &amp; onboarding</li>
+            <li>Everything in Starter</li>
+            <li>Automation &amp; workflow builds</li>
+            <li>Your own connected accounts</li>
+            <li>Priority Australian support</li>
+          </ul>
+          <a href="https://manyhandz.ai/signup" class="btn btn-outline-navy">Get started</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="plan-name">Agency</div>
+          <div class="plan-price">$599<span>/mo</span></div>
+          <div class="plan-subtitle">For agencies and multi-location operations</div>
+          <ul class="plan-features">
+            <li>20M tokens per month</li>
+            <li>Everything in Builder</li>
+            <li>Multi-user access</li>
+            <li>Priority support &amp; SLA</li>
+            <li>Dedicated account manager</li>
+            <li>Custom integrations</li>
+          </ul>
+          <a href="https://manyhandz.ai/signup" class="btn btn-outline-navy">Get started</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SOCIAL PROOF ========== -->
+  <section class="social-proof" id="testimonials">
+    <div class="container">
+      <div class="trusted-label">Trusted by businesses across Australia</div>
+      <div class="section-header" style="margin-top: 12px;">
+        <h2>What our clients say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <blockquote>It's like having an extra team member who never misses a thing. ManyHandz handles our follow-up emails, reminds me about quotes, and even drafted our last supplier contract. Worth every cent.</blockquote>
+          <div class="testimonial-author">James Holbrook</div>
+          <div class="testimonial-business">Holbrook Electrical, Perth WA</div>
+        </div>
+        <div class="testimonial-card">
+          <blockquote>I was sceptical — I've tried AI tools before and they never really understood my business. This is different. It knows my clients by name, knows our pricing, and sounds like me. Genuinely impressed.</blockquote>
+          <div class="testimonial-author">Sarah Nguyen</div>
+          <div class="testimonial-business">SN Creative Studio, Brisbane QLD</div>
+        </div>
+        <div class="testimonial-card">
+          <blockquote>We run three locations and it was chaos keeping track of everything. ManyHandz tied it all together — rosters, supplier comms, customer follow-ups. The Agency plan paid for itself in the first month.</blockquote>
+          <div class="testimonial-author">Tom &amp; Alicia Brennan</div>
+          <div class="testimonial-business">Coastal Fresh Café Group, WA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Ready to get more done?</h2>
+        <p>Tell us about your business and we'll reach out to get you set up.</p>
+      </div>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Let's talk.</h3>
+          <p>
+            We work closely with each client to set up ManyHandz properly. No onboarding forms, no self-serve tutorials — just a real conversation about what you need.
+          </p>
+          <p>
+            Most clients are up and running within a week. We handle everything.
+          </p>
+          <div class="contact-direct">
+            Or email us directly: <a href="mailto:hello@manyhandz.ai">hello@manyhandz.ai</a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="business">Business name</label>
+              <input type="text" id="business" name="business" placeholder="Acme Co." required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="jane@acmeco.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">What do you need help with?</label>
+              <textarea id="message" name="message" placeholder="Tell us a bit about your business and what you're hoping ManyHandz can help with…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold form-submit">Get in touch</button>
+          </form>
+          <div class="thank-you" id="thank-you">
+            <div class="tick">✅</div>
+            <h3>Thanks — we'll be in touch soon.</h3>
+            <p>We typically respond within one business day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>manyhandz.ai</strong> — One AI. Many hands.
+        </div>
+        <div class="footer-copy">
+          © 2026 ManyHandz. Perth, Western Australia.
+        </div>
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JS ========== -->
+  <script>
+    // --- Nav scroll effect ---
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // --- Mobile menu toggle ---
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // --- Active nav highlight on scroll ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    // --- Form submit handler ---
+    const form = document.getElementById('contact-form');
+    const thankYou = document.getElementById('thank-you');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.style.display = 'none';
+      thankYou.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
