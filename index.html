@@ -623,7 +623,7 @@
               <label for="message">What do you need help with?</label>
               <textarea id="message" name="message" placeholder="Tell us a bit about your business and what you're hoping ManyHandz can help with…" required></textarea>
             </div>
-            <button type="submit" class="btn btn-gold form-submit">Get in touch</button>
+            <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px"><input type="checkbox" id="terms-agree" name="terms-agree" required style="margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:#c9a84c;cursor:pointer" /><label for="terms-agree" style="font-size:0.85rem;color:rgba(255,255,255,0.65);font-weight:400;cursor:pointer">I have read and agree to the <a href="/terms" target="_blank" style="color:#c9a84c;text-decoration:underline">Terms of Service</a> and <a href="/privacy" target="_blank" style="color:#c9a84c;text-decoration:underline">Privacy Policy</a></label></div><button type="submit" class="btn btn-gold form-submit">Get in touch</button>
           </form>
           <div class="thank-you" id="thank-you">
             <div class="tick">✅</div>
@@ -646,8 +646,8 @@
           © 2026 ManyHandz. Perth, Western Australia.
         </div>
         <div class="footer-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
         </div>
       </div>
     </div>
