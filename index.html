@@ -487,7 +487,7 @@
         <div class="pricing-card">
           <div class="plan-name">Starter</div>
           <div class="plan-price">$29<span>/mo</span></div>
-          <div class="plan-subtitle">Perfect for getting started<br><strong style="color: var(--navy);">$10 in AI credits</strong> included every month</div>
+          <div class="plan-subtitle">Perfect for getting started<br><strong style="color: var(--navy);">US$10 in AI credits</strong> included every month</div>
           <ul class="plan-features">
             <li>Full AI assistant — voice &amp; chat</li>
             <li>Personalised onboarding &amp; business memory</li>
@@ -518,7 +518,7 @@
           </div>
 
           <div class="plan-price" id="pro-price">$59<span>/mo</span></div>
-          <div class="plan-subtitle">For businesses that use AI daily<br><strong style="color: var(--navy);" id="pro-credits">$30 in AI credits</strong> included every month</div>
+          <div class="plan-subtitle">For businesses that use AI daily<br><strong style="color: var(--navy);" id="pro-credits">US$30 in AI credits</strong> included every month</div>
           <ul class="plan-features">
             <li>Full AI assistant — voice &amp; chat</li>
             <li>Personalised onboarding &amp; business memory</li>
@@ -699,7 +699,7 @@
       const credits = selected.dataset.credits;
       const plan = selected.value;
       proPrice.innerHTML = `$${price}<span>/mo</span>`;
-      proCredits.textContent = `$${credits} in AI credits`;
+      proCredits.textContent = `US$${credits} in AI credits`;
       proCta.href = `https://app.manyhandz.ai/signup?plan=${plan}`;
     }
 
