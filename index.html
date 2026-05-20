@@ -687,6 +687,14 @@
     }, { rootMargin: '-30% 0px -60% 0px' });
     sections.forEach(s => observer.observe(s));
 
+    // --- Currency detection + conversion ---
+    const AUD_PRICES   = { starter: 29, 'pro-growth': 59, 'pro-business': 119, 'pro-scale': 199, 'pro-enterprise': 399 };
+    const USD_CREDITS  = { starter: 10, 'pro-growth': 30, 'pro-business':  80, 'pro-scale': 160, 'pro-enterprise': 500 };
+    const SYMBOLS = { AUD:'A$', USD:'US$', GBP:'£', EUR:'€', CAD:'CA$', NZD:'NZ$', SGD:'S$', JPY:'¥', INR:'₹', MYR:'RM ', PHP:'₱', IDR:'Rp ', HKD:'HK$', ZAR:'R ', BRL:'R$', MXN:'MX$', AED:'AED ', SEK:'kr ', NOK:'kr ' };
+    let userCurrency = 'AUD', userSymbol = 'A$', audRate = 1, usdRate = 1;
+
+    function fmt(amount) { return userSymbol + Math.round(amount).toLocaleString(); }
+
     // --- Pro tier dropdown ---
     const proSelect = document.getElementById('pro-tier-select');
     const proPrice = document.getElementById('pro-price');
@@ -695,13 +703,65 @@
 
     function updateProTile() {
       const selected = proSelect.options[proSelect.selectedIndex];
-      const price = selected.dataset.price;
-      const credits = selected.dataset.credits;
       const plan = selected.value;
-      proPrice.innerHTML = `$${price}<span>/mo</span>`;
-      proCredits.textContent = `US$${credits} in AI credits`;
+      const price   = selected.dataset.priceLocal   || selected.dataset.price;
+      const credits = selected.dataset.creditsLocal || selected.dataset.credits;
+      proPrice.innerHTML = `${fmt(price)}<span>/mo</span>`;
+      proCredits.textContent = `${fmt(credits)} in AI credits`;
       proCta.href = `https://app.manyhandz.ai/signup?plan=${plan}`;
     }
+
+    function applyPrices() {
+      // Starter tile
+      const starterPriceEl = document.querySelector('.plan-price:not(#pro-price)');
+      const starterCreditsEl = document.querySelector('.plan-subtitle:not(:last-of-type) strong');
+      if (starterPriceEl) starterPriceEl.innerHTML = `${fmt(AUD_PRICES.starter * audRate)}<span>/mo</span>`;
+      if (starterCreditsEl) starterCreditsEl.textContent = `${fmt(USD_CREDITS.starter * usdRate)} in AI credits`;
+
+      // Pro dropdown options
+      if (proSelect) {
+        Array.from(proSelect.options).forEach(opt => {
+          const plan = opt.value;
+          opt.dataset.priceLocal   = Math.round(AUD_PRICES[plan]  * audRate);
+          opt.dataset.creditsLocal = Math.round(USD_CREDITS[plan] * usdRate);
+          const tierName = opt.text.split(' — ')[0];
+          opt.text = `${tierName} — ${fmt(opt.dataset.priceLocal)}/mo`;
+        });
+        updateProTile();
+      }
+
+      // Append note if not AUD
+      if (userCurrency !== 'AUD') {
+        let note = document.getElementById('currency-note');
+        if (!note) {
+          note = document.createElement('p');
+          note.id = 'currency-note';
+          note.style.cssText = 'text-align:center;font-size:0.78rem;color:#94a3b8;margin-top:16px;';
+          const grid = document.querySelector('.pricing-grid');
+          if (grid) grid.after(note);
+        }
+        note.textContent = `Prices shown in ${userCurrency} (approximate). Subscriptions billed in AUD. AI credits in USD.`;
+      }
+    }
+
+    async function detectCurrency() {
+      try {
+        const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
+        userCurrency = geo.currency || 'AUD';
+        userSymbol   = SYMBOLS[userCurrency] || (userCurrency + ' ');
+        if (userCurrency !== 'AUD') {
+          const [r1, r2] = await Promise.all([
+            fetch(`https://api.frankfurter.app/latest?from=AUD&to=${userCurrency}`).then(r => r.json()).catch(() => null),
+            fetch(`https://api.frankfurter.app/latest?from=USD&to=${userCurrency}`).then(r => r.json()).catch(() => null),
+          ]);
+          audRate = r1?.rates?.[userCurrency] || 1;
+          usdRate = r2?.rates?.[userCurrency] || 1;
+        }
+      } catch(e) { /* fall back to AUD */ }
+      applyPrices();
+    }
+
+    detectCurrency();
 
     if (proSelect) {
       proSelect.addEventListener('change', updateProTile);
