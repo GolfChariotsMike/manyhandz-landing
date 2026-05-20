@@ -747,17 +747,22 @@
     async function detectCurrency() {
       try {
         const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
-        userCurrency = geo.currency || 'AUD';
+        userCurrency = (geo.currency || 'AUD').toUpperCase();
         userSymbol   = SYMBOLS[userCurrency] || (userCurrency + ' ');
         if (userCurrency !== 'AUD') {
-          const [r1, r2] = await Promise.all([
-            fetch(`https://api.frankfurter.app/latest?from=AUD&to=${userCurrency}`).then(r => r.json()).catch(() => null),
-            fetch(`https://api.frankfurter.app/latest?from=USD&to=${userCurrency}`).then(r => r.json()).catch(() => null),
-          ]);
-          audRate = r1?.rates?.[userCurrency] || 1;
-          usdRate = r2?.rates?.[userCurrency] || 1;
+          // jsdelivr-cached currency API: free, no key, no CORS issues
+          const audRates = await fetch(
+            'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/aud.min.json'
+          ).then(r => r.json());
+          const curr = userCurrency.toLowerCase();
+          const aud_to_user = audRates?.aud?.[curr];
+          const aud_to_usd  = audRates?.aud?.['usd'];
+          if (aud_to_user) audRate = aud_to_user;
+          // usdRate = how much 1 USD is worth in user currency
+          // = (aud_to_user) / (aud_to_usd)
+          if (aud_to_user && aud_to_usd) usdRate = aud_to_user / aud_to_usd;
         }
-      } catch(e) { /* fall back to AUD */ }
+      } catch(e) { /* fall back to AUD display */ }
       applyPrices();
     }
 
