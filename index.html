@@ -425,7 +425,7 @@
             <li><span>Can <strong>build tools, automations, and software</strong> tailored to your business</span></li>
             <li><span><strong>Fully managed</strong> - nothing to set up, nothing to maintain</span></li>
             <li><span>Works across <strong>voice, chat, email, calendar</strong>, and your existing tools</span></li>
-            <li><span>Operated by a <strong class="au-only" data-au-text="local Australian team" data-intl-text="dedicated team">local Australian team</strong> who actually picks up the phone</span></li>
+            <li><span>Operated by a <strong class="au-only" data-au-text="local Australian team" data-intl-text="dedicated team">dedicated team</strong> who actually picks up the phone</span></li>
           </ul>
         </div>
       </div>
@@ -468,7 +468,7 @@
         <div class="feature-card">
           <span class="feature-icon">🇦🇺</span>
           <h3 class="au-only" data-au-text="Australian Operated" data-intl-text="Globally Operated">Australian Operated</h3>
-          <p class="au-only" data-au-text="Hosted and managed from Perth, WA. Talk to real people, not a support queue. We're in your timezone." data-intl-text="Managed by a dedicated team. Real people, responsive support - no bots, no support queues.">Hosted and managed from Perth, WA. Talk to real people, not a support queue. We're in your timezone.</p>
+          <p class="au-only" data-au-text="Hosted and managed from Perth, WA. Talk to real people, not a support queue. We're in your timezone." data-intl-text="Managed by a dedicated team. Real people, responsive support - no bots, no support queues.">Managed by a dedicated team. Real people, responsive support — no bots, no support queues.</p>
         </div>
       </div>
     </div>
@@ -759,7 +759,7 @@
     async function getCountryCode() {
       // Use Cloudflare's own trace — most accurate, no rate limits, no third party
       try {
-        const txt = await fetch('/cdn-cgi/trace').then(r => r.text());
+        const txt = await Promise.race([fetch('/cdn-cgi/trace').then(r => r.text()), new Promise((_,r)=>setTimeout(()=>r(new Error('timeout')),3000))]);
         const match = txt.match(/^loc=(\w+)$/m);
         if (match) return match[1].toUpperCase();
       } catch(e) {}
