@@ -756,12 +756,28 @@
       });
     }
 
-    async function detectCurrency() {
+    async function getCountryCode() {
+      // Use Cloudflare's own trace — most accurate, no rate limits, no third party
+      try {
+        const txt = await fetch('/cdn-cgi/trace').then(r => r.text());
+        const match = txt.match(/^loc=(\w+)$/m);
+        if (match) return match[1].toUpperCase();
+      } catch(e) {}
+      // Fallback to ipapi.co
       try {
         const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
-        const isAU = (geo.country_code || '').toUpperCase() === 'AU';
+        return (geo.country_code || '').toUpperCase();
+      } catch(e) {}
+      return '';
+    }
+
+    async function detectCurrency() {
+      try {
+        const countryCode = await getCountryCode();
+        const isAU = countryCode === 'AU';
         applyGeoContent(isAU);
-        userCurrency = (geo.currency || 'AUD').toUpperCase();
+        const geo = await fetch('https://ipapi.co/json/').then(r => r.json()).catch(() => ({}));
+        userCurrency = (geo.currency || (isAU ? 'AUD' : 'USD')).toUpperCase();
         userSymbol   = SYMBOLS[userCurrency] || (userCurrency + ' ');
         if (userCurrency !== 'AUD') {
           // jsdelivr-cached currency API: free, no key, no CORS issues
