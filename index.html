@@ -503,7 +503,7 @@
         <div class="pricing-card">
           <div class="plan-name">Starter</div>
           <div class="plan-price">$29<span>/mo</span></div>
-          <div class="plan-subtitle">Perfect for getting started<br><strong style="color: var(--navy);">US$5 in AI credits</strong> included every month</div>
+          <div class="plan-subtitle">Perfect for getting started<br><strong style="color: var(--navy);">US$15 in AI credits</strong> included every month</div>
           <ul class="plan-features">
             <li>Full AI assistant - voice &amp; chat</li>
             <li>Personalised onboarding &amp; business memory</li>
@@ -525,16 +525,16 @@
           <div class="pro-tier-selector" style="margin-bottom: 16px;">
             <div class="custom-select-wrapper" style="position: relative;">
               <select id="pro-tier-select" class="pro-select">
-                <option value="pro-growth" data-price="59" data-credits="35">Growth - $59/mo</option>
-                <option value="pro-business" data-price="119" data-credits="95">Business - $119/mo</option>
-                <option value="pro-scale" data-price="199" data-credits="195">Scale - $199/mo</option>
-                <option value="pro-enterprise" data-price="399" data-credits="495">Enterprise - $399/mo</option>
+                <option value="pro-growth" data-price="59" data-credits="40">Growth - $59/mo</option>
+                <option value="pro-business" data-price="119" data-credits="100">Business - $119/mo</option>
+                <option value="pro-scale" data-price="199" data-credits="180">Scale - $199/mo</option>
+                <option value="pro-enterprise" data-price="399" data-credits="380">Enterprise - $399/mo</option>
               </select>
             </div>
           </div>
 
           <div class="plan-price" id="pro-price">$59<span>/mo</span></div>
-          <div class="plan-subtitle">For businesses that use AI daily<br><strong style="color: var(--navy);" id="pro-credits">US$35 in AI credits</strong> included every month</div>
+          <div class="plan-subtitle">For businesses that use AI daily<br><strong style="color: var(--navy);" id="pro-credits">US$40 in AI credits</strong> included every month</div>
           <ul class="plan-features">
             <li>Full AI assistant - voice &amp; chat</li>
             <li>Personalised onboarding &amp; business memory</li>
@@ -705,7 +705,7 @@
 
     // --- Currency detection + conversion ---
     const AUD_PRICES   = { starter: 29, 'pro-growth': 59, 'pro-business': 119, 'pro-scale': 199, 'pro-enterprise': 399 };
-    const USD_CREDITS  = { starter: 5, 'pro-growth': 35, 'pro-business': 95, 'pro-scale': 195, 'pro-enterprise': 495 };
+    const USD_CREDITS  = { starter: 15, 'pro-growth': 40, 'pro-business': 100, 'pro-scale': 180, 'pro-enterprise': 380 };
     const SYMBOLS = { AUD:'A$', USD:'US$', GBP:'£', EUR:'€', CAD:'CA$', NZD:'NZ$', SGD:'S$', JPY:'¥', INR:'₹', MYR:'RM ', PHP:'₱', IDR:'Rp ', HKD:'HK$', ZAR:'R ', BRL:'R$', MXN:'MX$', AED:'AED ', SEK:'kr ', NOK:'kr ' };
     let userCurrency = 'AUD', userSymbol = 'A$', audRate = 1, usdRate = 1;
 
