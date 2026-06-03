@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ManyHandz — One AI. Many hands.</title>
-  <meta name="description" content="ManyHandz is an agentic AI assistant that works while you sleep — not just when you're chatting to it. Emails sent, tasks done, workflows running.">
+  <title>ManyHandz — AI Business Assistant for Australian Small Businesses</title>
+  <meta name="description" content="ManyHandz is a fully managed AI assistant for Australian small businesses. It handles your inbox, knows your clients, runs automations, and gets things done — even when you're not online.">
+  <link rel="canonical" href="https://manyhandz.ai/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://manyhandz.ai/">
-  <meta property="og:title" content="ManyHandz — One AI. Many hands.">
+  <meta property="og:title" content="ManyHandz — AI Business Assistant for Australian Small Businesses">
   <meta property="og:description" content="A fully managed AI assistant for your business. Handles your inbox, knows your clients, and actually gets things done.">
   <meta property="og:image" content="https://manyhandz.ai/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -17,7 +18,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ManyHandz — One AI. Many hands.">
+  <meta name="twitter:title" content="ManyHandz — AI Business Assistant for Australian Small Businesses">
   <meta name="twitter:description" content="A fully managed AI assistant for your business. Handles your inbox, knows your clients, and actually gets things done.">
   <meta name="twitter:image" content="https://manyhandz.ai/og-image.png">
 
@@ -514,6 +515,21 @@
     .testimonial-author { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
     .testimonial-business { font-size: 0.85rem; color: var(--slate-light); margin-top: 2px; }
 
+    /* ========== ACCESSIBILITY ========== */
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ========== FAQ SECTION ========== */
+    .faq { padding: 80px 0; background: var(--bg-light); }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 22px 24px; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: background 0.2s; }
+    .faq-question:hover { background: var(--bg-light); }
+    .faq-question .faq-icon { font-size: 1.2rem; color: var(--gold); flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+    .faq-answer p { padding: 0 24px 22px; color: var(--slate); line-height: 1.7; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
     /* ========== SECURITY ========== */
     .security { background: var(--navy); padding: 80px 0; }
     .security h2 { color: var(--white); text-align: center; margin-bottom: 16px; }
@@ -680,8 +696,9 @@
       </div>
 
       <h1>
-        AI that works while<br>
-        <span class="gold-text">you sleep</span>
+        <span class="visually-hidden">ManyHandz — Managed AI Assistant for Australian Businesses</span>
+        <span aria-hidden="true">AI that works while<br>
+        <span class="gold-text">you sleep</span></span>
       </h1>
 
       <p class="hero-sub">
@@ -911,6 +928,89 @@
         <div class="testimonial-author">Leanne B.</div>
         <div class="testimonial-business">Consultant, Australia</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Common questions</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What is ManyHandz?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>ManyHandz is a fully managed AI assistant for small businesses. Unlike regular AI chatbots, it takes action — sending emails, running automations, managing your calendar, and building custom tools. It's hosted, configured, and operated for you with no setup required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          Does ManyHandz work when I'm not online?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. ManyHandz is an agentic AI that runs 24/7 — it handles tasks, monitors your inbox, and runs workflows whether you're in the chat or not. You don't need to be present for it to get things done.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          What can ManyHandz actually do for my business?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>ManyHandz handles email and calendar management, builds automations that connect your existing tools, creates custom software and dashboards for your business, remembers your clients and suppliers, and handles repetitive tasks so you can focus on what matters.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" aria-expanded="false">
+          Is my business data safe with ManyHandz?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. Every ManyHandz customer runs in a completely isolated environment — your data is never mixed with other customers. Your conversations and business information are never used to train AI models, and you can request full data deletion at any time.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" aria-expanded="false">
+          How long does setup take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Most customers are up and running in under 5 minutes. There's nothing to install or configure — you sign up, tell your AI about your business, connect your tools, and you're live.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" aria-expanded="false">
+          Is ManyHandz available in Australia?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. ManyHandz is built and operated in Perth, Western Australia. It's specifically designed for Australian small businesses and is supported by a local team — no offshore support queues.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" aria-expanded="false">
+          Can I cancel at any time?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. No lock-in contracts, no cancellation fees. Cancel any time and your data will be permanently deleted on request.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1180,7 +1280,143 @@
       alert('Something went wrong. Email us directly at info@manyhandz.ai');
     });
   });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 </script>
 
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ManyHandz",
+    "url": "https://manyhandz.ai",
+    "logo": "https://manyhandz.ai/og-image.png",
+    "description": "Fully managed AI assistant for Australian small businesses. Handles email, automates workflows, and builds custom tools — without setup or maintenance.",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Perth, Western Australia, Australia"
+    },
+    "areaServed": "AU",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@manyhandz.ai",
+      "contactType": "customer support"
+    },
+    "sameAs": []
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ManyHandz",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "A fully managed agentic AI assistant that handles email, automates tasks, and builds custom tools for Australian small businesses.",
+    "url": "https://manyhandz.ai",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Starter",
+        "price": "29",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "29",
+          "priceCurrency": "USD",
+          "unitCode": "MON"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "59",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "59",
+          "priceCurrency": "USD",
+          "unitCode": "MON"
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ManyHandz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ManyHandz is a fully managed AI assistant for small businesses. Unlike regular AI chatbots, it takes action — sending emails, running automations, managing your calendar, and building custom tools. It's hosted, configured, and operated for you with no setup required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does ManyHandz work when I'm not online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. ManyHandz is an agentic AI that runs 24/7 — it handles tasks, monitors your inbox, and runs workflows whether you're in the chat or not. You don't need to be present for it to get things done."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my business data safe with ManyHandz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every ManyHandz customer runs in a completely isolated environment — your data is never mixed with other customers. Your conversations and business information are never used to train AI models, and you can request full data deletion at any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does setup take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most customers are up and running in under 5 minutes. There's nothing to install or configure — you sign up, tell your AI about your business, connect your tools, and you're live."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ManyHandz available in Australia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. ManyHandz is built and operated in Perth, Western Australia. It's specifically designed for Australian small businesses and is managed by a local team."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What can ManyHandz actually do for my business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ManyHandz can handle email and calendar management, build automations that connect your existing tools, create custom software and dashboards for your business, remember your clients and suppliers, and handle repetitive tasks so you can focus on what matters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I cancel ManyHandz at any time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. There are no lock-in contracts. You can cancel your ManyHandz subscription at any time and your data will be permanently deleted on request."
+        }
+      }
+    ]
+  }
+]
+</script>
 </body>
 </html>
