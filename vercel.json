@@ -1,4 +1,9 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/signup", "destination": "https://app.manyhandz.ai/signup", "permanent": false },
+    { "source": "/signup/:path*", "destination": "https://app.manyhandz.ai/signup/:path*", "permanent": false },
+    { "source": "/login", "destination": "https://app.manyhandz.ai/login", "permanent": false }
+  ]
 }
