@@ -427,8 +427,8 @@
     /* ========== PRICING ========== */
     .pricing { background: var(--bg-light); }
     .pricing-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: start;
-      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;
+      max-width: 1100px; margin: 0 auto;
     }
     @media (max-width: 640px) {
       .pricing-grid { grid-template-columns: 1fr; }
@@ -890,6 +890,22 @@
         </ul>
         <a href="https://app.manyhandz.ai/signup" class="btn btn-gold">Get started →</a>
       </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card reveal reveal-delay-3">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price" style="font-size:2.2rem;">Custom</div>
+        <div class="plan-subtitle">Multiple agents &amp; advanced integrations</div>
+        <ul class="plan-features">
+          <li>Multiple AI agents across your business</li>
+          <li>Custom integrations &amp; workflows</li>
+          <li>Dedicated onboarding &amp; setup</li>
+          <li>Priority support</li>
+          <li>Custom minute pools</li>
+          <li>Tailored to your business</li>
+        </ul>
+        <a href="mailto:hello@manyhandz.ai" class="btn btn-outline-navy">Contact us →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1312,6 +1328,13 @@
         "name": "Big Business",
         "price": "499",
         "priceCurrency": "AUD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Enterprise",
+        "price": "0",
+        "priceCurrency": "AUD",
+        "description": "Custom pricing — contact us"
       }
     ]
   },
