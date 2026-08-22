@@ -427,8 +427,8 @@
     /* ========== PRICING ========== */
     .pricing { background: var(--bg-light); }
     .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;
-      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: start;
+      max-width: 860px; margin: 0 auto;
     }
     @media (max-width: 640px) {
       .pricing-grid { grid-template-columns: 1fr; }
@@ -856,56 +856,41 @@
       <p>No setup fees. No lock-in. Cancel anytime.</p>
     </div>
     <div class="pricing-grid">
-      <!-- Voice -->
+      <!-- Small Business -->
       <div class="pricing-card reveal reveal-delay-1">
-        <div class="plan-name">Voice</div>
-        <div class="plan-price">$199<span>/mo</span></div>
-        <div class="plan-subtitle">AI answers your calls 24/7</div>
+        <div class="plan-name">Small Business</div>
+        <div class="plan-price">$199<span>/mo AUD</span></div>
+        <div class="plan-subtitle">AI agent answers every call 24/7</div>
         <ul class="plan-features">
-          <li>Dedicated AI phone number</li>
-          <li>AI receptionist — never miss a call</li>
-          <li>After-hours message taking</li>
-          <li>Staff transfer with whisper confirm</li>
-          <li>Full call log + caller details</li>
-          <li>Custom AI persona + business hours</li>
+          <li>Your own AU phone number</li>
+          <li>AI answers calls 24/7</li>
+          <li>Lead qualification</li>
+          <li>Live call transfer</li>
+          <li>SMS follow-ups</li>
+          <li>Call logs &amp; transcripts</li>
+          <li>Custom greeting &amp; prompt</li>
           <li>Cancel anytime</li>
         </ul>
         <a href="https://app.manyhandz.ai/signup" class="btn btn-outline-navy">Get started →</a>
       </div>
 
-      <!-- Voice + Inbox -->
+      <!-- Big Business -->
       <div class="pricing-card popular reveal reveal-delay-2">
         <div class="popular-badge">Most Popular</div>
-        <div class="plan-name">Voice + Inbox</div>
-        <div class="plan-price">$349<span>/mo</span></div>
+        <div class="plan-name">Big Business</div>
+        <div class="plan-price">$299<span>/mo AUD</span></div>
         <div class="plan-subtitle">Calls AND emails handled for you</div>
         <ul class="plan-features">
-          <li>Everything in Voice</li>
-          <li>AI email drafting</li>
-          <li>SMS routing + classification</li>
-          <li>Unlimited email drafts</li>
-          <li>Inbox triage — AI flags what matters</li>
-          <li>Priority support</li>
+          <li>Everything in Small Business</li>
+          <li>Connect Gmail or Outlook</li>
+          <li>AI drafts email replies</li>
+          <li>Junk filtered automatically</li>
+          <li>Urgent emails flagged instantly</li>
+          <li>Approve replies before sending</li>
+          <li>Unified call + email dashboard</li>
           <li>Cancel anytime</li>
         </ul>
         <a href="https://app.manyhandz.ai/signup" class="btn btn-gold">Get started →</a>
-      </div>
-
-      <!-- Full Stack -->
-      <div class="pricing-card reveal reveal-delay-3">
-        <div class="plan-name">Full Stack</div>
-        <div class="plan-price">$499<span>/mo</span></div>
-        <div class="plan-subtitle">Your full AI team in one platform</div>
-        <ul class="plan-features">
-          <li>Everything in Voice + Inbox</li>
-          <li>Live chat widget for your website</li>
-          <li>Full knowledge base</li>
-          <li>Multiple team members</li>
-          <li>Custom AI training</li>
-          <li>Priority support + onboarding call</li>
-          <li>Cancel anytime</li>
-        </ul>
-        <a href="https://app.manyhandz.ai/signup" class="btn btn-outline-navy">Get started →</a>
       </div>
     </div>
   </div>
@@ -1320,20 +1305,14 @@
     "offers": [
       {
         "@type": "Offer",
-        "name": "Voice",
+        "name": "Small Business",
         "price": "199",
         "priceCurrency": "AUD"
       },
       {
         "@type": "Offer",
-        "name": "Voice + Inbox",
-        "price": "349",
-        "priceCurrency": "AUD"
-      },
-      {
-        "@type": "Offer",
-        "name": "Full Stack",
-        "price": "499",
+        "name": "Big Business",
+        "price": "299",
         "priceCurrency": "AUD"
       }
     ]
