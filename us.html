@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManyHandz — AI phone answering and website chat for US businesses</title>
+  <meta name="description" content="ManyHandz answers your phone and website chat — one AI that actually knows your business. Dedicated US number. Live in about 5 minutes.">
+  <link rel="canonical" href="https://manyhandz.ai/us">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://manyhandz.ai/us">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="ManyHandz — AI phone answering and website chat for US businesses">
+  <meta property="og:description" content="ManyHandz answers your phone and website chat — one AI that actually knows your business. Dedicated US number. Live in about 5 minutes.">
+  <meta property="og:image" content="https://manyhandz.ai/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ManyHandz — AI phone answering and website chat for US businesses">
+  <meta name="twitter:description" content="ManyHandz answers your phone and website chat — one AI that actually knows your business. Dedicated US number. Live in about 5 minutes.">
+  <meta name="twitter:image" content="https://manyhandz.ai/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #334155;
+      background: #fff;
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    /* ========== VARIABLES ========== */
+    :root {
+      --navy: #0f1f3d;
+      --navy-light: #162b52;
+      --gold: #c9a84c;
+      --gold-dark: #b8963e;
+      --gold-light: #e8c97a;
+      --white: #ffffff;
+      --slate: #334155;
+      --slate-light: #64748b;
+      --bg-light: #f8f9fb;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(15, 31, 61, 0.08);
+      --shadow-lg: 0 8px 40px rgba(15, 31, 61, 0.14);
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1, h2, h3, h4 { color: var(--navy); font-weight: 700; line-height: 1.2; }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    h3 { font-size: 1.2rem; }
+    p { color: var(--slate); }
+
+    /* ========== LAYOUT ========== */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 96px 0; }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.25s ease;
+      border: 2px solid transparent;
+      position: relative; overflow: hidden;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--navy);
+      border-color: var(--gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-dark); border-color: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,168,76,0.45);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .btn-outline-navy {
+      background: transparent; color: var(--navy);
+      border-color: var(--navy);
+    }
+    .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+
+    /* ========== NAV ========== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(15,31,61,0.12); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-size: 1.4rem; font-weight: 800; color: var(--navy);
+      text-decoration: none; letter-spacing: -0.5px; display: flex; align-items: center; gap: 2px;
+    }
+    .nav-logo .dot { color: var(--gold); font-size: 1.8rem; line-height: 1; margin-left: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      color: var(--slate); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      padding: 8px 14px; border-radius: 6px; transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); background: var(--bg-light); }
+    .nav-links .btn-gold { padding: 9px 20px; font-size: 0.9rem; }
+    .nav-links .btn-gold:hover { transform: none; }
+    .nav-locale {
+      color: var(--slate-light); text-decoration: none; font-weight: 500; font-size: 0.82rem;
+      padding: 8px 10px; border-radius: 6px;
+    }
+    .nav-locale:hover { color: var(--navy); background: var(--bg-light); }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; display: block; transition: all 0.3s; }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 4px;
+      padding: 12px 24px 20px; border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--slate); text-decoration: none; font-weight: 500;
+      padding: 10px 12px; border-radius: 6px; transition: background 0.2s;
+    }
+    .mobile-menu a:hover { background: var(--bg-light); }
+    .mobile-menu .btn-gold { text-align: center; margin-top: 8px; }
+
+    /* ========== HERO ========== */
+    .hero {
+      background: var(--navy);
+      padding: 110px 0 90px;
+      position: relative; overflow: hidden;
+      min-height: 680px;
+      display: flex; align-items: center;
+    }
+
+    /* Aurora animated background */
+    .aurora {
+      position: absolute; inset: -100%;
+      background: repeating-linear-gradient(
+        100deg,
+        rgba(201,168,76,0.15) 0%,
+        rgba(22,43,82,0.4) 12%,
+        rgba(201,168,76,0.08) 22%,
+        rgba(15,31,61,0.6) 35%,
+        rgba(201,168,76,0.12) 45%
+      );
+      background-size: 300% 100%;
+      filter: blur(80px);
+      animation: aurora-shift 18s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes aurora-shift {
+      0%   { background-position: 0% 50%;   transform: translate(0,0) scale(1); }
+      33%  { background-position: 60% 30%;  transform: translate(3%, -2%) scale(1.05); }
+      66%  { background-position: 120% 70%; transform: translate(-2%, 3%) scale(0.97); }
+      100% { background-position: 200% 50%; transform: translate(0,0) scale(1.02); }
+    }
+
+    /* Glowing orbs */
+    .hero-orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); pointer-events: none;
+    }
+    .hero-orb-1 {
+      width: 600px; height: 600px;
+      top: -150px; right: -150px;
+      background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+      animation: orb-float1 12s ease-in-out infinite;
+    }
+    .hero-orb-2 {
+      width: 500px; height: 500px;
+      bottom: -200px; left: -100px;
+      background: radial-gradient(circle, rgba(22,43,82,0.8) 0%, rgba(201,168,76,0.06) 60%, transparent 80%);
+      animation: orb-float2 15s ease-in-out infinite;
+    }
+    .hero-orb-3 {
+      width: 300px; height: 300px;
+      top: 30%; left: 40%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      animation: orb-float3 20s ease-in-out infinite;
+    }
+    @keyframes orb-float1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-30px, 30px) scale(1.1); }
+    }
+    @keyframes orb-float2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(20px, -20px) scale(1.08); }
+    }
+    @keyframes orb-float3 {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(30px, -15px); }
+      66% { transform: translate(-20px, 20px); }
+    }
+
+    /* Particle canvas */
+    #particle-canvas {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light); font-size: 0.85rem; font-weight: 500;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+      animation: badge-fade-in 0.8s ease both;
+    }
+    @keyframes badge-fade-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 6px rgba(201,168,76,0.8);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 4px rgba(201,168,76,0.6); }
+      50% { box-shadow: 0 0 10px rgba(201,168,76,1), 0 0 20px rgba(201,168,76,0.4); }
+    }
+
+    .hero h1 {
+      color: var(--white); margin-bottom: 24px;
+      animation: hero-h1-in 0.9s ease 0.2s both;
+    }
+    @keyframes hero-h1-in {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1 .gold-text { color: var(--gold); }
+
+    /* Typewriter */
+    .typewriter-wrap {
+      display: block;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: var(--white);
+      min-height: 1.3em;
+      margin-top: 6px;
+    }
+    .typewriter-word {
+      color: var(--gold);
+      border-right: 3px solid var(--gold);
+      white-space: nowrap; overflow: hidden;
+      animation: cursor-blink 0.8s step-end infinite;
+    }
+    @keyframes cursor-blink {
+      0%, 100% { border-color: var(--gold); }
+      50% { border-color: transparent; }
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.75); font-size: 1.2rem;
+      max-width: 580px; margin-bottom: 40px; line-height: 1.75;
+      animation: hero-sub-in 0.9s ease 0.45s both;
+    }
+    @keyframes hero-sub-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-ctas {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px;
+      animation: hero-ctas-in 0.9s ease 0.6s both;
+    }
+    @keyframes hero-ctas-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-trust {
+      color: rgba(255,255,255,0.45); font-size: 0.88rem;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+      animation: hero-ctas-in 0.9s ease 0.75s both;
+    }
+    .hero-trust span { display: flex; align-items: center; gap: 5px; }
+
+    /* ========== STATS STRIP ========== */
+    .stats-strip {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 40px 0;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; text-align: center;
+    }
+    .stat-item {
+      padding: 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 2.6rem; font-weight: 800;
+      color: var(--gold); line-height: 1;
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      color: rgba(255,255,255,0.55); font-size: 0.9rem;
+      margin-top: 6px; font-weight: 500;
+    }
+
+    /* ========== SCROLL ANIMATION ========== */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ========== PROBLEM / SOLUTION ========== */
+    .problem-solution { background: var(--bg-light); }
+    .ps-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .ps-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 40px; box-shadow: var(--shadow);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .ps-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .ps-card.solution { border-top: 4px solid var(--gold); }
+    .ps-card.problem { border-top: 4px solid #e2e8f0; }
+    .ps-card h3 { font-size: 1.35rem; margin-bottom: 20px; }
+    .ps-card.problem h3 { color: var(--slate); }
+    .ps-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .ps-card ul li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.97rem; color: var(--slate);
+    }
+    .ps-card.problem ul li::before {
+      content: '✗'; color: #94a3b8; font-weight: 600;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .ps-card.solution ul li::before {
+      content: '✓'; color: var(--gold); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ========== FEATURES ========== */
+    .features { background: var(--white); }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header p { color: var(--slate-light); font-size: 1.1rem; margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+    .feature-card {
+      padding: 32px 28px; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--white);
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .feature-card:hover { box-shadow: var(--shadow-lg); border-color: rgba(201,168,76,0.35); transform: translateY(-4px); }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-icon {
+      font-size: 2.2rem; margin-bottom: 16px; display: block;
+      filter: drop-shadow(0 2px 8px rgba(201,168,76,0.25));
+    }
+    .feature-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: var(--navy); }
+    .feature-card p { font-size: 0.93rem; color: var(--slate-light); line-height: 1.65; }
+
+    /* ========== HOW IT WORKS ========== */
+    .how-it-works { background: var(--navy); padding: 96px 0; }
+    .how-it-works h2 { color: var(--white); }
+    .how-it-works .section-header p { color: rgba(255,255,255,0.6); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative; margin-top: 60px;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute; top: 28px; left: 14%; right: 14%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+    }
+    .step {
+      text-align: center; padding: 0 20px;
+      position: relative;
+    }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--navy); font-weight: 800; font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+    }
+    .step h3 { color: var(--white); font-size: 1rem; margin-bottom: 8px; }
+    .step p { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ========== PRICING ========== */
+    .pricing { background: var(--bg-light); }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: start;
+      max-width: 760px; margin: 0 auto;
+    }
+    @media (max-width: 640px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+    .pricing-card {
+      background: var(--white); border-radius: 16px;
+      padding: 40px 36px; border: 2px solid var(--border);
+      position: relative; transition: all 0.3s ease;
+    }
+    .pricing-card:hover { box-shadow: var(--shadow-lg); }
+    .pricing-card.popular {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.2), var(--shadow-lg);
+    }
+    .popular-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+      font-size: 0.78rem; font-weight: 700; padding: 4px 18px; border-radius: 100px;
+      white-space: nowrap; letter-spacing: 0.5px; text-transform: uppercase;
+      box-shadow: 0 2px 12px rgba(201,168,76,0.3);
+    }
+    .plan-name { font-size: 0.9rem; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .plan-price { font-size: 3rem; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; letter-spacing: -2px; }
+    .plan-price span { font-size: 1.1rem; font-weight: 500; color: var(--slate-light); letter-spacing: 0; }
+    .plan-subtitle { color: var(--slate-light); font-size: 0.9rem; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .plan-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.93rem; color: var(--slate);
+    }
+    .plan-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+    .pricing-card.popular .btn-gold {
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      box-shadow: 0 4px 16px rgba(201,168,76,0.3);
+    }
+
+    /* ========== PRO TIER DROPDOWN ========== */
+    .pro-select {
+      width: 100%;
+      padding: 10px 40px 10px 14px;
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      background: var(--white);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c9a84c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      margin-bottom: 12px;
+    }
+    .pro-hint { font-size: 0.82rem; color: var(--slate-light); margin-bottom: 20px; }
+
+    /* ========== SOCIAL PROOF ========== */
+    .social-proof { background: var(--white); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--bg-light); border-radius: var(--radius);
+      padding: 32px; border: 1px solid var(--border);
+      transition: all 0.3s ease; position: relative;
+    }
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(201,168,76,0.25);
+      transform: translateY(-3px);
+    }
+    .stars {
+      color: var(--gold); font-size: 1rem; margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .testimonial-card blockquote {
+      font-style: italic; color: var(--slate); font-size: 0.97rem;
+      line-height: 1.75; margin-bottom: 20px;
+    }
+    .testimonial-author { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+    .testimonial-business { font-size: 0.85rem; color: var(--slate-light); margin-top: 2px; }
+
+    /* ========== ACCESSIBILITY ========== */
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ========== FAQ SECTION ========== */
+    .faq { padding: 80px 0; background: var(--bg-light); }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 22px 24px; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: background 0.2s; }
+    .faq-question:hover { background: var(--bg-light); }
+    .faq-question .faq-icon { font-size: 1.2rem; color: var(--gold); flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+    .faq-answer p { padding: 0 24px 22px; color: var(--slate); line-height: 1.7; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ========== SECURITY ========== */
+    .security { background: var(--navy); padding: 80px 0; }
+    .security h2 { color: var(--white); text-align: center; margin-bottom: 16px; }
+    .security-sub { text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 52px; font-size: 1.05rem; }
+    .security-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+    }
+    .security-item {
+      text-align: center; padding: 32px 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.03);
+      transition: all 0.3s ease;
+    }
+    .security-item:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(201,168,76,0.25);
+    }
+    .security-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .security-item h4 { color: var(--gold); font-size: 0.95rem; margin-bottom: 8px; }
+    .security-item p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ========== CONTACT ========== */
+    .contact { background: #f1f5f9; padding: 96px 0; }
+    .contact h2 { color: var(--navy); }
+    .contact .section-header p { color: var(--slate-light); }
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 56px; }
+    .contact-info h3 { color: var(--navy); font-size: 1.5rem; margin-bottom: 16px; }
+    .contact-info p { color: var(--slate); font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
+    .contact-direct { color: var(--slate-light); font-size: 0.95rem; margin-top: 32px; }
+    .contact-direct a { color: var(--gold-dark); text-decoration: none; font-weight: 600; }
+    .contact-direct a:hover { text-decoration: underline; }
+    .contact-form {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px;
+      box-shadow: var(--shadow);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; color: var(--navy); font-size: 0.88rem; font-weight: 600; margin-bottom: 8px; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 12px 16px;
+      background: var(--bg-light); border: 1.5px solid var(--border);
+      border-radius: 8px; color: var(--navy); font-family: 'Inter', sans-serif;
+      font-size: 0.97rem; transition: all 0.2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--gold);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-submit { width: 100%; justify-content: center; font-size: 1rem; padding: 14px; }
+    .thank-you {
+      display: none; text-align: center; padding: 48px 24px;
+      color: var(--navy);
+    }
+    .thank-you .tick { font-size: 3rem; margin-bottom: 16px; }
+    .thank-you h3 { color: var(--gold-dark); margin-bottom: 12px; font-size: 1.5rem; }
+    .thank-you p { color: var(--slate-light); }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: #08131f; padding: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    .footer-brand strong { color: var(--white); }
+    .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ========== GLOW CTA STRIP ========== */
+    .cta-strip {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3460 100%);
+      padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, transparent 70%);
+    }
+    .cta-strip h2 { color: var(--white); position: relative; z-index: 1; margin-bottom: 16px; }
+    .cta-strip p { color: rgba(255,255,255,0.65); position: relative; z-index: 1; max-width: 480px; margin: 0 auto 36px; font-size: 1.05rem; }
+    .cta-strip .btn-gold {
+      position: relative; z-index: 1;
+      font-size: 1.05rem; padding: 16px 36px;
+      box-shadow: 0 4px 32px rgba(201,168,76,0.4);
+    }
+    .cta-strip .cta-alt {
+      margin: 20px auto 0;
+      font-size: 0.95rem;
+    }
+    .cta-strip .cta-alt a {
+      color: var(--gold-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+    .cta-strip .cta-alt a:hover { color: var(--gold); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .security-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.08); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .steps-grid::before { display: none; }
+      .ps-grid { grid-template-columns: 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .security-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/us" class="nav-logo">ManyHandz<span class="dot">.</span></a>
+      <div class="nav-links">
+        <a href="#products">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <a href="https://app.manyhandz.ai/login">Sign in</a>
+        <a href="/" class="nav-locale">Australia</a>
+        <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started free →</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#products">Features</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a href="https://app.manyhandz.ai/login">Sign in</a>
+    <a href="/" class="nav-locale">Australia</a>
+    <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started free →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="aurora"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Dedicated US number · Live in about 5 minutes
+      </div>
+
+      <h1>
+        <span class="visually-hidden">ManyHandz — AI phone answering and website chat for US businesses. One knowledge base.</span>
+        <span aria-hidden="true">Your AI team.<br>
+        <span class="gold-text">Calls and chat. One setup.</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        ManyHandz answers the phone and your website chat — one AI that actually knows your business. Built for US contractors and small businesses. Live in about 5 minutes.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started free →</a>
+      </div>
+
+      <div class="hero-trust">
+        <span>✓ 14-day free trial</span>
+        <span>·</span>
+        <span>✓ Live in about 5 minutes</span>
+        <span>·</span>
+        <span>✓ Cancel anytime</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num">US</div>
+        <div class="stat-label">Dedicated local number</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="24" data-suffix="/7">0/7</div>
+        <div class="stat-label">Always on — never offline</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-target="5" data-suffix=" min">0 min</div>
+        <div class="stat-label">Average setup time</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-target="0" data-suffix=" setup fee">$0 setup</div>
+        <div class="stat-label">Nothing to configure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM / SOLUTION -->
+<section class="problem-solution">
+  <div class="container">
+    <div class="ps-grid">
+      <div class="ps-card problem reveal">
+        <h3>Sound familiar?</h3>
+        <ul>
+          <li>Missed calls while you're on a job — HVAC, plumbing, electrical</li>
+          <li>Website visitors leaving without booking or asking for a quote</li>
+          <li>Paying for a receptionist you can't afford full-time</li>
+          <li>Generic chatbots that don't know your trade</li>
+        </ul>
+      </div>
+      <div class="ps-card solution reveal reveal-delay-2">
+        <h3>ManyHandz fixes all of it.</h3>
+        <ul>
+          <li><strong>AI answers your calls 24/7</strong> — screens, takes messages, transfers VIPs</li>
+          <li><strong>Chat widget on your website</strong> — answers visitor questions instantly</li>
+          <li><strong>One knowledge base</strong> — set up once, works for phone and chat</li>
+          <li><strong>Set up in 5 minutes</strong> — we scan your website and do the rest</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="features" id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Products</span>
+      <h2>Voice, chat, and one knowledge base.</h2>
+      <p>Set up your business info once — your AI uses it to answer the phone and your website chat. Built for contractors and small businesses.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal reveal-delay-1">
+        <span class="feature-icon">📞</span>
+        <h3>Voice</h3>
+        <p>AI answers your phone calls 24/7. Screens callers, handles FAQs, takes messages, and transfers important calls directly to you.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <span class="feature-icon">💬</span>
+        <h3>Chat Widget</h3>
+        <p>AI chat on your website. Answers visitor questions instantly using your knowledge base. Hands off to a human when needed.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <span class="feature-icon">🧠</span>
+        <h3>One Knowledge Base</h3>
+        <p>Your services, FAQs, hours, and tone — set up once in the ManyHandz dashboard. Voice and chat both draw from the same source of truth.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <span class="feature-icon">📱</span>
+        <h3>Local US Phone Number</h3>
+        <p>A dedicated local US number for your business. Callers get a local answer that knows your hours, services, and how you work.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <span class="feature-icon">🔒</span>
+        <h3>Private &amp; Secure</h3>
+        <p>Your data stays yours. No sharing between clients, no training on your information. Complete data isolation.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <span class="feature-icon">🔧</span>
+        <h3>Built for contractors</h3>
+        <p>HVAC, plumbing, electrical, and other trades. Your AI covers the phone while you're on a job — not another faceless SaaS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" style="color: var(--gold-light);">The process</span>
+      <h2>Up and running in minutes</h2>
+      <p style="color: rgba(255,255,255,0.6);">No IT department needed. No months-long onboarding. Just a capable AI for your business.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <h3>Tell us about your business</h3>
+        <p>Enter your website URL and we'll scan it automatically to learn about your business.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <h3>We set up your AI</h3>
+        <p>Your knowledge base is built from your website — services, FAQs, hours, tone. Review and tweak.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <h3>Go live on phone and chat</h3>
+        <p>We'll issue a local US phone number and/or hand you a chat widget snippet to drop on your site.</p>
+      </div>
+      <div class="step reveal reveal-delay-4">
+        <div class="step-num">4</div>
+        <h3>Done</h3>
+        <p>Your AI is live — answering calls and chatting with website visitors. You focus on running your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Pricing</span>
+      <h2>Simple, honest pricing</h2>
+      <p>14-day free trial. No setup fees. Cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Small Business -->
+      <div class="pricing-card popular reveal reveal-delay-1">
+        <div class="popular-badge">Most popular</div>
+        <div class="plan-name">Small Business</div>
+        <div class="plan-price">$199<span>/mo USD</span></div>
+        <div class="plan-subtitle">600 mins/mo included</div>
+        <ul class="plan-features">
+          <li>14-day free trial</li>
+          <li>Dedicated local US phone number</li>
+          <li>600 mins/mo included</li>
+          <li>AI answers every call 24/7</li>
+          <li>Message notifications via SMS</li>
+          <li>Staff call transfers</li>
+          <li>Knowledge base updates</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started →</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price" style="font-size:2.2rem;">Custom</div>
+        <div class="plan-subtitle">Multiple agents &amp; advanced integrations</div>
+        <ul class="plan-features">
+          <li>Multiple AI agents across your business</li>
+          <li>Custom integrations &amp; workflows</li>
+          <li>Dedicated onboarding &amp; setup</li>
+          <li>Priority support</li>
+          <li>Custom minute pools</li>
+          <li>Tailored to your business</li>
+        </ul>
+        <a href="mailto:hello@manyhandz.ai" class="btn btn-outline-navy">Contact us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Common questions</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What is ManyHandz?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>ManyHandz is an AI phone answering service and website chat widget — both powered by one knowledge base that knows your business inside out. Set up in under 5 minutes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          Does ManyHandz work when I'm not online?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. Your AI answers calls and chats with website visitors around the clock — even when you're asleep, on vacation, or just busy.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          What can ManyHandz actually do for my business?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>ManyHandz answers your phone calls 24/7 and chats with website visitors — all using a knowledge base that knows your services, hours, FAQs, and how you like to communicate.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" aria-expanded="false">
+          Is my business data safe with ManyHandz?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. Every ManyHandz customer runs in a completely isolated environment — your data is never mixed with other customers. Your conversations and business information are never used to train AI models, and you can request full data deletion at any time.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" aria-expanded="false">
+          How long does setup take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Most customers are up and running in under 5 minutes. There's nothing to install or configure — you sign up, we scan your website, and you're live with a phone number and/or chat snippet.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" aria-expanded="false">
+          Do I get a US phone number?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. US businesses get a dedicated local US phone number. Sign up and you can be live in about 5 minutes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" aria-expanded="false">
+          Can I cancel at any time?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. No lock-in contracts, no cancellation fees. Cancel any time and your data will be permanently deleted on request.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" aria-expanded="false">
+          Can I use Grok Bot with my own Gmail?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. ManyHandz is phone answering and website chat. If you use Grok Bot with your own Gmail, you can connect ManyHandz so Grok uses the same knowledge base for inbox work.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="security">
+  <div class="container">
+    <h2 class="reveal">Your data is yours. Full stop.</h2>
+    <p class="security-sub reveal reveal-delay-1">We take data privacy seriously. Here's exactly what that means for you.</p>
+    <div class="security-grid">
+      <div class="security-item reveal reveal-delay-1">
+        <span class="security-icon">🏠</span>
+        <h4>Isolated environment</h4>
+        <p>Your AI runs in its own dedicated instance — separate from every other customer. No data mixing, ever.</p>
+      </div>
+      <div class="security-item reveal reveal-delay-2">
+        <span class="security-icon">🚫</span>
+        <h4>Never used for training</h4>
+        <p>Your conversations and business data are never used to train AI models. What's yours stays yours.</p>
+      </div>
+      <div class="security-item reveal reveal-delay-3">
+        <span class="security-icon">🗑️</span>
+        <h4>Full data deletion</h4>
+        <p>Cancel your account and every piece of your data is permanently removed — no questions asked.</p>
+      </div>
+      <div class="security-item reveal reveal-delay-4">
+        <span class="security-icon">🔑</span>
+        <h4>Your AI, your context</h4>
+        <p>What your assistant learns about your business stays with your business. Never shared with anyone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip reveal">
+  <div class="container">
+    <h2>Ready to get your time back?</h2>
+    <p>14-day free trial. Set up in minutes. Cancel anytime.</p>
+    <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started free →</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Get in touch</span>
+      <h2>Talk to a real person</h2>
+      <p>Not sure if ManyHandz is right for you? We'll be straight with you.</p>
+    </div>
+    <div class="contact-wrapper">
+      <div class="contact-info reveal">
+        <h3>We actually pick up the phone.</h3>
+        <p>No chatbots, no support tickets, no runaround. A real person reads every inquiry and we'll be straight with you.</p>
+        <p>Tell us about your business and we'll help you figure out if ManyHandz is the right fit — and if it's not, we'll tell you that too.</p>
+        <div class="contact-direct">
+          Prefer email? <a href="mailto:info@manyhandz.ai">info@manyhandz.ai</a>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-2">
+        <div id="contact-form-wrap">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" id="field-name" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" id="field-email" placeholder="you@company.com" />
+          </div>
+          <div class="form-group">
+            <label>Tell us about your business</label>
+            <textarea id="field-message" placeholder="What do you do, how many people, what's eating your time..."></textarea>
+          </div>
+          <button class="btn btn-gold form-submit" id="form-submit">Send message →</button>
+        </div>
+        <div class="thank-you" id="thank-you">
+          <div class="tick">✅</div>
+          <h3>Got it — we'll be in touch.</h3>
+          <p>Usually within one business day. Real humans, remember?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>ManyHandz</strong> — One AI. Many hands.</div>
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="#contact">Contact</a>
+        <a href="https://app.manyhandz.ai/signup?country=US">Sign up</a>
+        <a href="/">Australia</a>
+      </div>
+      <div class="footer-copy">© 2026 ManyHandz</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== NAV SCROLL ===== */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  /* ===== MOBILE MENU ===== */
+  document.getElementById('nav-toggle').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+  });
+
+  /* ===== TYPEWRITER ===== */
+  const words = ['your phones', 'your website', 'your clients', 'your workflow', 'your business']; // typewriter disabled in favour of static hero
+  const el = document.getElementById('typewriter');
+  let wordIdx = 0, charIdx = 0, deleting = false;
+
+  function type() {
+    if (!el) return;
+    const word = words[wordIdx];
+    if (!deleting) {
+      el.textContent = word.slice(0, ++charIdx);
+      if (charIdx === word.length) {
+        deleting = true;
+        setTimeout(type, 2000);
+        return;
+      }
+    } else {
+      el.textContent = word.slice(0, --charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        wordIdx = (wordIdx + 1) % words.length;
+      }
+    }
+    setTimeout(type, deleting ? 60 : 100);
+  }
+  setTimeout(type, 1200);
+
+  /* ===== PARTICLES ===== */
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.floor(canvas.width / 18);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3,
+        dx: (Math.random() - 0.5) * 0.4,
+        dy: -(Math.random() * 0.5 + 0.2),
+        opacity: Math.random() * 0.5 + 0.1,
+        color: Math.random() > 0.6 ? '#c9a84c' : '#fff',
+      });
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+      if (p.x < -10) p.x = canvas.width + 10;
+      if (p.x > canvas.width + 10) p.x = -10;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(animateParticles);
+  }
+
+  resizeCanvas();
+  createParticles();
+  animateParticles();
+  window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+
+  /* ===== SCROLL REVEAL ===== */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ===== ANIMATED COUNTERS ===== */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    if (isNaN(target)) return;
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const val = Math.round(eased * target);
+      el.textContent = val + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stats-strip').forEach(el => counterObserver.observe(el));
+
+  /* ===== PRO TIER DROPDOWN ===== */
+  /* Pro tier dropdown removed — simplified pricing */
+
+  /* ===== CONTACT FORM ===== */
+  document.getElementById('form-submit').addEventListener('click', function() {
+    const name = document.getElementById('field-name').value.trim();
+    const email = document.getElementById('field-email').value.trim();
+    const msg = document.getElementById('field-message').value.trim();
+    if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+
+    fetch('https://formspree.io/f/xvgrzldw', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, message: msg })
+    }).then(r => {
+      document.getElementById('contact-form-wrap').style.display = 'none';
+      document.getElementById('thank-you').style.display = 'block';
+    }).catch(() => {
+      alert('Something went wrong. Email us directly at info@manyhandz.ai');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ManyHandz",
+    "url": "https://manyhandz.ai/us",
+    "logo": "https://manyhandz.ai/og-image.png",
+    "description": "AI phone answering and website chat for US small businesses and contractors. One knowledge base. Dedicated local US number. Live in about 5 minutes.",
+    "areaServed": "US",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@manyhandz.ai",
+      "contactType": "customer support"
+    },
+    "sameAs": []
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ManyHandz",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "AI that answers your calls and chats with your website visitors — powered by one knowledge base that knows your business. Dedicated local US phone number.",
+    "url": "https://manyhandz.ai/us",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Small Business",
+        "price": "199",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Enterprise",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Custom pricing — contact us"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ManyHandz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ManyHandz is an AI phone answering service and website chat widget — both powered by one knowledge base that knows your business inside out. Set up in about 5 minutes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does ManyHandz work when I'm not online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Your AI answers calls and chats with website visitors around the clock — even when you're asleep, on vacation, or just busy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my business data safe with ManyHandz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every ManyHandz customer runs in a completely isolated environment — your data is never mixed with other customers. Your conversations and business information are never used to train AI models, and you can request full data deletion at any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does setup take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most customers are up and running in about 5 minutes. There's nothing to install or configure — you sign up, we scan your website, and you're live with a phone number and/or chat snippet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I get a US phone number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. US businesses get a dedicated local US phone number. Sign up and you can be live in about 5 minutes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What can ManyHandz actually do for my business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ManyHandz answers your phone calls 24/7 and chats with website visitors — all using a knowledge base that knows your services, hours, FAQs, and how you like to communicate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I cancel ManyHandz at any time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. There are no lock-in contracts. You can cancel your ManyHandz subscription at any time and your data will be permanently deleted on request."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Grok Bot with my own Gmail?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. ManyHandz is phone answering and website chat. If you use Grok Bot with your own Gmail, you can connect ManyHandz so Grok uses the same knowledge base for inbox work."
+        }
+      }
+    ]
+  }
+]
+</script>
+</body>
+</html>
