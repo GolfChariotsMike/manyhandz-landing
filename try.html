@@ -132,41 +132,6 @@
       padding: 72px 0 80px;
       position: relative; overflow: hidden;
     }
-    .aurora {
-      position: absolute; inset: -100%;
-      background: repeating-linear-gradient(
-        100deg,
-        rgba(201,168,76,0.15) 0%,
-        rgba(22,43,82,0.4) 12%,
-        rgba(201,168,76,0.08) 22%,
-        rgba(15,31,61,0.6) 35%,
-        rgba(201,168,76,0.12) 45%
-      );
-      background-size: 300% 100%;
-      filter: blur(80px);
-      animation: aurora-shift 18s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes aurora-shift {
-      0%   { background-position: 0% 50%;   transform: translate(0,0) scale(1); }
-      33%  { background-position: 60% 30%;  transform: translate(3%, -2%) scale(1.05); }
-      66%  { background-position: 120% 70%; transform: translate(-2%, 3%) scale(0.97); }
-      100% { background-position: 200% 50%; transform: translate(0,0) scale(1.02); }
-    }
-    .hero-orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); pointer-events: none;
-    }
-    .hero-orb-1 {
-      width: 480px; height: 480px;
-      top: -120px; right: -120px;
-      background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
-    }
-    .hero-orb-2 {
-      width: 400px; height: 400px;
-      bottom: -160px; left: -80px;
-      background: radial-gradient(circle, rgba(22,43,82,0.8) 0%, rgba(201,168,76,0.06) 60%, transparent 80%);
-    }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(201,168,76,0.12);
@@ -327,10 +292,6 @@
 </nav>
 
 <section class="hero">
-  <div class="aurora"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-
   <div class="container">
     <div class="try-grid">
       <div>

@@ -1,0 +1,29 @@
+# ManyHandz
+
+> AI phone answering and website chat. One knowledge base. manyhandz.ai
+
+ManyHandz is a product — not a consultancy. It answers the phone and talks to website visitors using the same business knowledge base.
+
+## Product
+- AI answers inbound calls 24/7 (screen, FAQs, messages, VIP transfer)
+- Chat widget on the customer’s website
+- One knowledge base for voice and chat
+- SMS notifications for messages
+- Live SimPRO connection: phone and chat can create Open Leads
+- 14-day free trial; typical setup is about 5 minutes
+
+## Regions
+- https://manyhandz.ai/ — Australian businesses (Perth-built; AU numbers)
+- https://manyhandz.ai/us — US contractors and small businesses (dedicated local US number)
+- https://manyhandz.ai/try — live demo call
+
+## Do not claim
+- Live customer connection on the public site is SimPRO only (Open Leads)
+- Do not invent a field-service or CRM marketplace
+- No Meta Pixel on this site
+
+## Links
+- App signup: https://app.manyhandz.ai/signup
+- Privacy: https://manyhandz.ai/privacy
+- Terms: https://manyhandz.ai/terms
+- Full summary: https://manyhandz.ai/llms-full.txt

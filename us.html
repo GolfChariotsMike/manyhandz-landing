@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ManyHandz — AI phone answering and website chat for US businesses</title>
-  <meta name="description" content="ManyHandz answers your phone and website chat — one AI that actually knows your business. Dedicated US number. Live in about 5 minutes.">
+  <title>ManyHandz — AI phone answering and website chat for US contractors</title>
+  <meta name="description" content="AI phone answering and website chat for US contractors and small businesses. One knowledge base. Dedicated local number. Live in about 5 minutes.">
   <link rel="canonical" href="https://manyhandz.ai/us">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://manyhandz.ai/us">
   <meta property="og:locale" content="en_US">
-  <meta property="og:title" content="ManyHandz — AI phone answering and website chat for US businesses">
-  <meta property="og:description" content="ManyHandz answers your phone and website chat — one AI that actually knows your business. Dedicated US number. Live in about 5 minutes.">
+  <meta property="og:title" content="ManyHandz — AI phone answering and website chat for US contractors">
+  <meta property="og:description" content="AI phone answering and website chat for US contractors and small businesses. One knowledge base. Dedicated local number. Live in about 5 minutes.">
   <meta property="og:image" content="https://manyhandz.ai/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ManyHandz — AI phone answering and website chat for US businesses">
-  <meta name="twitter:description" content="ManyHandz answers your phone and website chat — one AI that actually knows your business. Dedicated US number. Live in about 5 minutes.">
+  <meta name="twitter:title" content="ManyHandz — AI phone answering and website chat for US contractors">
+  <meta name="twitter:description" content="AI phone answering and website chat for US contractors and small businesses. One knowledge base. Dedicated local number. Live in about 5 minutes.">
   <meta name="twitter:image" content="https://manyhandz.ai/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -156,71 +156,6 @@
       display: flex; align-items: center;
     }
 
-    /* Aurora animated background */
-    .aurora {
-      position: absolute; inset: -100%;
-      background: repeating-linear-gradient(
-        100deg,
-        rgba(201,168,76,0.15) 0%,
-        rgba(22,43,82,0.4) 12%,
-        rgba(201,168,76,0.08) 22%,
-        rgba(15,31,61,0.6) 35%,
-        rgba(201,168,76,0.12) 45%
-      );
-      background-size: 300% 100%;
-      filter: blur(80px);
-      animation: aurora-shift 18s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes aurora-shift {
-      0%   { background-position: 0% 50%;   transform: translate(0,0) scale(1); }
-      33%  { background-position: 60% 30%;  transform: translate(3%, -2%) scale(1.05); }
-      66%  { background-position: 120% 70%; transform: translate(-2%, 3%) scale(0.97); }
-      100% { background-position: 200% 50%; transform: translate(0,0) scale(1.02); }
-    }
-
-    /* Glowing orbs */
-    .hero-orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); pointer-events: none;
-    }
-    .hero-orb-1 {
-      width: 600px; height: 600px;
-      top: -150px; right: -150px;
-      background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
-      animation: orb-float1 12s ease-in-out infinite;
-    }
-    .hero-orb-2 {
-      width: 500px; height: 500px;
-      bottom: -200px; left: -100px;
-      background: radial-gradient(circle, rgba(22,43,82,0.8) 0%, rgba(201,168,76,0.06) 60%, transparent 80%);
-      animation: orb-float2 15s ease-in-out infinite;
-    }
-    .hero-orb-3 {
-      width: 300px; height: 300px;
-      top: 30%; left: 40%;
-      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
-      animation: orb-float3 20s ease-in-out infinite;
-    }
-    @keyframes orb-float1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-30px, 30px) scale(1.1); }
-    }
-    @keyframes orb-float2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(20px, -20px) scale(1.08); }
-    }
-    @keyframes orb-float3 {
-      0%, 100% { transform: translate(0, 0); }
-      33% { transform: translate(30px, -15px); }
-      66% { transform: translate(-20px, 20px); }
-    }
-
-    /* Particle canvas */
-    #particle-canvas {
-      position: absolute; inset: 0; pointer-events: none;
-    }
-
     .hero-content { position: relative; z-index: 1; max-width: 800px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -255,24 +190,26 @@
     }
     .hero h1 .gold-text { color: var(--gold); }
 
-    /* Typewriter */
-    .typewriter-wrap {
-      display: block;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
-      color: var(--white);
-      min-height: 1.3em;
-      margin-top: 6px;
-    }
+    .typewriter-line { display: block; }
     .typewriter-word {
       color: var(--gold);
       border-right: 3px solid var(--gold);
-      white-space: nowrap; overflow: hidden;
+      white-space: nowrap;
+      padding-right: 2px;
       animation: cursor-blink 0.8s step-end infinite;
     }
+    .typewriter-reduced { display: none; }
     @keyframes cursor-blink {
       0%, 100% { border-color: var(--gold); }
       50% { border-color: transparent; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .typewriter-line { display: none; }
+      .typewriter-reduced { display: block; }
+      .typewriter-word { animation: none; border-right: none; }
+      .hero-badge, .hero h1, .hero-sub, .hero-ctas, .hero-trust { animation: none; }
+      .badge-dot { animation: none; }
     }
 
     .hero-sub {
@@ -400,6 +337,51 @@
     }
     .feature-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: var(--navy); }
     .feature-card p { font-size: 0.93rem; color: var(--slate-light); line-height: 1.65; }
+
+    /* ========== CONNECTS ========== */
+    .connects { background: var(--bg-light); }
+    .simpro-card {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      box-shadow: var(--shadow);
+    }
+    .simpro-mono {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.4px;
+      flex-shrink: 0;
+    }
+    .simpro-name {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .simpro-copy {
+      color: var(--slate);
+      font-size: 0.97rem;
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .simpro-more { color: var(--slate-light); font-size: 0.85rem; }
+    @media (max-width: 640px) {
+      .simpro-card { flex-direction: column; padding: 28px 24px; gap: 16px; }
+    }
 
     /* ========== HOW IT WORKS ========== */
     .how-it-works { background: var(--navy); padding: 96px 0; }
@@ -598,6 +580,15 @@
     .thank-you h3 { color: var(--gold-dark); margin-bottom: 12px; font-size: 1.5rem; }
     .thank-you p { color: var(--slate-light); }
 
+    /* ========== ABOUT ========== */
+    .about {
+      background: var(--white);
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+    }
+    .about .section-header { margin-bottom: 0; }
+    .about .section-header p { max-width: 640px; }
+
     /* ========== FOOTER ========== */
     footer {
       background: #08131f; padding: 32px 0;
@@ -701,12 +692,6 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="aurora"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-  <canvas id="particle-canvas"></canvas>
-
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge">
@@ -715,9 +700,9 @@
       </div>
 
       <h1>
-        <span class="visually-hidden">ManyHandz — AI phone answering and website chat for US businesses. One knowledge base.</span>
-        <span aria-hidden="true">Your AI team.<br>
-        <span class="gold-text">Calls and chat. One setup.</span></span>
+        <span class="visually-hidden">Your AI team that handles calls, web chats, bookings, quotes, and customer service</span>
+        <span class="typewriter-line" aria-hidden="true">Your AI team that handles <span class="typewriter-word" id="typewriter">calls</span></span>
+        <span class="typewriter-reduced" aria-hidden="true">Your AI team that handles calls, web chats, bookings, quotes, and customer service</span>
       </h1>
 
       <p class="hero-sub">
@@ -829,6 +814,25 @@
         <p>HVAC, plumbing, electrical, and other trades. Your AI covers the phone while you're on a job — not another faceless SaaS.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CONNECTS -->
+<section class="connects" id="connects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Connections</span>
+      <h2>Connects with software you use</h2>
+      <p>Notifications by SMS, chat on your site, same knowledge base — not a marketplace of tools we don't ship.</p>
+    </div>
+    <article class="simpro-card reveal">
+      <div class="simpro-mono" aria-hidden="true">sP</div>
+      <div>
+        <p class="simpro-name">simPRO</p>
+        <p class="simpro-copy">Phone and website chat can create Open Leads in SimPRO, so jobs land where your team already works.</p>
+        <p class="simpro-more">More connections coming.</p>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -1086,6 +1090,17 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">About</span>
+      <h2>Perth-built product for the phone and the site chat</h2>
+      <p>ManyHandz is AI phone answering and website chat for US contractors and small businesses. One knowledge base for calls and chat. Built in Perth; US customers get a dedicated local number.</p>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1094,6 +1109,7 @@
       <div class="footer-links">
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a href="https://app.manyhandz.ai/signup?country=US">Sign up</a>
         <a href="/?geo=au">Australia</a>
@@ -1119,79 +1135,34 @@
   });
 
   /* ===== TYPEWRITER ===== */
-  const words = ['your phones', 'your website', 'your clients', 'your workflow', 'your business']; // typewriter disabled in favour of static hero
-  const el = document.getElementById('typewriter');
-  let wordIdx = 0, charIdx = 0, deleting = false;
-
-  function type() {
+  (function () {
+    const el = document.getElementById('typewriter');
     if (!el) return;
-    const word = words[wordIdx];
-    if (!deleting) {
-      el.textContent = word.slice(0, ++charIdx);
-      if (charIdx === word.length) {
-        deleting = true;
-        setTimeout(type, 2000);
-        return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const words = ['calls', 'web chats', 'bookings', 'quotes', 'customer service'];
+    let wordIdx = 0, charIdx = 0, deleting = false;
+
+    function type() {
+      const word = words[wordIdx];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++charIdx);
+        if (charIdx === word.length) {
+          deleting = true;
+          setTimeout(type, 1800);
+          return;
+        }
+      } else {
+        el.textContent = word.slice(0, --charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          wordIdx = (wordIdx + 1) % words.length;
+        }
       }
-    } else {
-      el.textContent = word.slice(0, --charIdx);
-      if (charIdx === 0) {
-        deleting = false;
-        wordIdx = (wordIdx + 1) % words.length;
-      }
+      setTimeout(type, deleting ? 45 : 85);
     }
-    setTimeout(type, deleting ? 60 : 100);
-  }
-  setTimeout(type, 1200);
-
-  /* ===== PARTICLES ===== */
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-
-  function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  function createParticles() {
-    particles = [];
-    const count = Math.floor(canvas.width / 18);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5 + 0.3,
-        dx: (Math.random() - 0.5) * 0.4,
-        dy: -(Math.random() * 0.5 + 0.2),
-        opacity: Math.random() * 0.5 + 0.1,
-        color: Math.random() > 0.6 ? '#c9a84c' : '#fff',
-      });
-    }
-  }
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.globalAlpha = p.opacity;
-      ctx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
-      if (p.x < -10) p.x = canvas.width + 10;
-      if (p.x > canvas.width + 10) p.x = -10;
-    });
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(animateParticles);
-  }
-
-  resizeCanvas();
-  createParticles();
-  animateParticles();
-  window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+    setTimeout(type, 800);
+  })();
 
   /* ===== SCROLL REVEAL ===== */
   const observer = new IntersectionObserver((entries) => {
@@ -1295,6 +1266,14 @@
     "operatingSystem": "Web",
     "description": "AI that answers your calls and chats with your website visitors — powered by one knowledge base that knows your business. Dedicated local US phone number.",
     "url": "https://manyhandz.ai/us",
+    "featureList": [
+      "AI phone answering",
+      "Website chat widget",
+      "Shared knowledge base",
+      "SMS message notifications",
+      "SimPRO Open Leads",
+      "Dedicated US phone number"
+    ],
     "offers": [
       {
         "@type": "Offer",
@@ -1365,10 +1344,10 @@
       },
       {
         "@type": "Question",
-        "name": "Can I cancel ManyHandz at any time?",
+        "name": "Can I cancel at any time?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. There are no lock-in contracts. You can cancel your ManyHandz subscription at any time and your data will be permanently deleted on request."
+          "text": "Yes. No lock-in contracts, no cancellation fees. Cancel any time and your data will be permanently deleted on request."
         }
       },
       {
