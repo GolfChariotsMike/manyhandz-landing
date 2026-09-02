@@ -6,6 +6,10 @@
   <title>ManyHandz — AI phone answering and website chat</title>
   <meta name="description" content="ManyHandz handles your calls and website chat — powered by one AI that actually knows your business. Set up in under 5 minutes.">
   <link rel="canonical" href="https://manyhandz.ai/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -334,47 +338,9 @@
 
     /* ========== CONNECTS ========== */
     .connects { background: var(--bg-light); }
-    .simpro-card {
-      max-width: 640px;
-      margin: 0 auto;
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 36px;
-      box-shadow: var(--shadow);
-    }
-    .simpro-mono {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px; height: 56px;
-      border-radius: 12px;
-      background: var(--navy);
-      color: var(--gold);
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: -0.4px;
-      flex-shrink: 0;
-    }
-    .simpro-name {
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--navy);
-      letter-spacing: -0.3px;
-      margin-bottom: 6px;
-    }
-    .simpro-copy {
-      color: var(--slate);
-      font-size: 0.97rem;
-      line-height: 1.65;
-      margin-bottom: 10px;
-    }
-    .simpro-more { color: var(--slate-light); font-size: 0.85rem; }
-    @media (max-width: 640px) {
-      .simpro-card { flex-direction: column; padding: 28px 24px; gap: 16px; }
+    .connects .section-header { margin-bottom: 28px; }
+    .connects-actions {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
     }
 
     /* ========== HOW IT WORKS ========== */
@@ -808,17 +774,13 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="section-eyebrow">Connections</span>
-      <h2>Connects with software you use</h2>
-      <p>Notifications by SMS, chat on your site, same knowledge base — not a marketplace of tools we don't ship.</p>
+      <h2>Connects with the software you use</h2>
+      <p>ManyHandz can be custom-integrated with the tools you already run — job software, CRM, calendar — if you ask. Not a marketplace of logos. Same idea as Enterprise: custom integrations and workflows, not a wall of native apps we don't ship.</p>
     </div>
-    <article class="simpro-card reveal">
-      <div class="simpro-mono" aria-hidden="true">sP</div>
-      <div>
-        <p class="simpro-name">simPRO</p>
-        <p class="simpro-copy">Phone and website chat can create Open Leads in SimPRO, so jobs land where your team already works.</p>
-        <p class="simpro-more">More connections coming.</p>
-      </div>
-    </article>
+    <div class="connects-actions reveal">
+      <a href="https://app.manyhandz.ai/signup" class="btn btn-gold">Get started free →</a>
+      <a href="#contact" class="btn btn-outline-navy">Request a callback</a>
+    </div>
   </div>
 </section>
 
