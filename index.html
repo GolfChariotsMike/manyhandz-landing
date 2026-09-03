@@ -6,6 +6,10 @@
   <title>ManyHandz — AI phone answering and website chat</title>
   <meta name="description" content="ManyHandz handles your calls and website chat — powered by one AI that actually knows your business. Set up in under 5 minutes.">
   <link rel="canonical" href="https://manyhandz.ai/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -150,71 +154,6 @@
       display: flex; align-items: center;
     }
 
-    /* Aurora animated background */
-    .aurora {
-      position: absolute; inset: -100%;
-      background: repeating-linear-gradient(
-        100deg,
-        rgba(201,168,76,0.15) 0%,
-        rgba(22,43,82,0.4) 12%,
-        rgba(201,168,76,0.08) 22%,
-        rgba(15,31,61,0.6) 35%,
-        rgba(201,168,76,0.12) 45%
-      );
-      background-size: 300% 100%;
-      filter: blur(80px);
-      animation: aurora-shift 18s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes aurora-shift {
-      0%   { background-position: 0% 50%;   transform: translate(0,0) scale(1); }
-      33%  { background-position: 60% 30%;  transform: translate(3%, -2%) scale(1.05); }
-      66%  { background-position: 120% 70%; transform: translate(-2%, 3%) scale(0.97); }
-      100% { background-position: 200% 50%; transform: translate(0,0) scale(1.02); }
-    }
-
-    /* Glowing orbs */
-    .hero-orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); pointer-events: none;
-    }
-    .hero-orb-1 {
-      width: 600px; height: 600px;
-      top: -150px; right: -150px;
-      background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
-      animation: orb-float1 12s ease-in-out infinite;
-    }
-    .hero-orb-2 {
-      width: 500px; height: 500px;
-      bottom: -200px; left: -100px;
-      background: radial-gradient(circle, rgba(22,43,82,0.8) 0%, rgba(201,168,76,0.06) 60%, transparent 80%);
-      animation: orb-float2 15s ease-in-out infinite;
-    }
-    .hero-orb-3 {
-      width: 300px; height: 300px;
-      top: 30%; left: 40%;
-      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
-      animation: orb-float3 20s ease-in-out infinite;
-    }
-    @keyframes orb-float1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-30px, 30px) scale(1.1); }
-    }
-    @keyframes orb-float2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(20px, -20px) scale(1.08); }
-    }
-    @keyframes orb-float3 {
-      0%, 100% { transform: translate(0, 0); }
-      33% { transform: translate(30px, -15px); }
-      66% { transform: translate(-20px, 20px); }
-    }
-
-    /* Particle canvas */
-    #particle-canvas {
-      position: absolute; inset: 0; pointer-events: none;
-    }
-
     .hero-content { position: relative; z-index: 1; max-width: 800px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -249,24 +188,26 @@
     }
     .hero h1 .gold-text { color: var(--gold); }
 
-    /* Typewriter */
-    .typewriter-wrap {
-      display: block;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
-      color: var(--white);
-      min-height: 1.3em;
-      margin-top: 6px;
-    }
+    .typewriter-line { display: block; }
     .typewriter-word {
       color: var(--gold);
       border-right: 3px solid var(--gold);
-      white-space: nowrap; overflow: hidden;
+      white-space: nowrap;
+      padding-right: 2px;
       animation: cursor-blink 0.8s step-end infinite;
     }
+    .typewriter-reduced { display: none; }
     @keyframes cursor-blink {
       0%, 100% { border-color: var(--gold); }
       50% { border-color: transparent; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .typewriter-line { display: none; }
+      .typewriter-reduced { display: block; }
+      .typewriter-word { animation: none; border-right: none; }
+      .hero-badge, .hero h1, .hero-sub, .hero-ctas, .hero-trust { animation: none; }
+      .badge-dot { animation: none; }
     }
 
     .hero-sub {
@@ -394,6 +335,13 @@
     }
     .feature-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: var(--navy); }
     .feature-card p { font-size: 0.93rem; color: var(--slate-light); line-height: 1.65; }
+
+    /* ========== CONNECTS ========== */
+    .connects { background: var(--bg-light); }
+    .connects .section-header { margin-bottom: 28px; }
+    .connects-actions {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    }
 
     /* ========== HOW IT WORKS ========== */
     .how-it-works { background: var(--navy); padding: 96px 0; }
@@ -695,12 +643,6 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="aurora"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-  <canvas id="particle-canvas"></canvas>
-
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge">
@@ -709,9 +651,9 @@
       </div>
 
       <h1>
-        <span class="visually-hidden">ManyHandz — AI phone answering and website chat. One knowledge base.</span>
-        <span aria-hidden="true">Your AI team.<br>
-        <span class="gold-text">Calls and chat. One setup.</span></span>
+        <span class="visually-hidden">Your AI team that handles calls, web chats, bookings, quotes, and customer service</span>
+        <span class="typewriter-line" aria-hidden="true">Your AI team that handles <span class="typewriter-word" id="typewriter">calls</span></span>
+        <span class="typewriter-reduced" aria-hidden="true">Your AI team that handles calls, web chats, bookings, quotes, and customer service</span>
       </h1>
 
       <p class="hero-sub">
@@ -823,6 +765,21 @@
         <h3>Australian Owned</h3>
         <p>Built and operated in Perth, Australia. Real people, real support — not another faceless SaaS.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECTS -->
+<section class="connects" id="connects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Connections</span>
+      <h2>Connects with the software you use</h2>
+      <p>ManyHandz can be integrated with tools you already run — job software, CRM, calendar. Tell us what you use and we'll hook it up at no extra cost. Not a marketplace of logos — not a wall of native apps we don't ship.</p>
+    </div>
+    <div class="connects-actions reveal">
+      <a href="https://app.manyhandz.ai/signup" class="btn btn-gold">Get started free →</a>
+      <a href="#contact" class="btn btn-outline-navy">Request a callback</a>
     </div>
   </div>
 </section>
@@ -1162,79 +1119,34 @@
   });
 
   /* ===== TYPEWRITER ===== */
-  const words = ['your phones', 'your website', 'your clients', 'your workflow', 'your business']; // typewriter disabled in favour of static hero
-  const el = document.getElementById('typewriter');
-  let wordIdx = 0, charIdx = 0, deleting = false;
-
-  function type() {
+  (function () {
+    const el = document.getElementById('typewriter');
     if (!el) return;
-    const word = words[wordIdx];
-    if (!deleting) {
-      el.textContent = word.slice(0, ++charIdx);
-      if (charIdx === word.length) {
-        deleting = true;
-        setTimeout(type, 2000);
-        return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const words = ['calls', 'web chats', 'bookings', 'quotes', 'customer service'];
+    let wordIdx = 0, charIdx = 0, deleting = false;
+
+    function type() {
+      const word = words[wordIdx];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++charIdx);
+        if (charIdx === word.length) {
+          deleting = true;
+          setTimeout(type, 1800);
+          return;
+        }
+      } else {
+        el.textContent = word.slice(0, --charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          wordIdx = (wordIdx + 1) % words.length;
+        }
       }
-    } else {
-      el.textContent = word.slice(0, --charIdx);
-      if (charIdx === 0) {
-        deleting = false;
-        wordIdx = (wordIdx + 1) % words.length;
-      }
+      setTimeout(type, deleting ? 45 : 85);
     }
-    setTimeout(type, deleting ? 60 : 100);
-  }
-  setTimeout(type, 1200);
-
-  /* ===== PARTICLES ===== */
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-
-  function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  function createParticles() {
-    particles = [];
-    const count = Math.floor(canvas.width / 18);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5 + 0.3,
-        dx: (Math.random() - 0.5) * 0.4,
-        dy: -(Math.random() * 0.5 + 0.2),
-        opacity: Math.random() * 0.5 + 0.1,
-        color: Math.random() > 0.6 ? '#c9a84c' : '#fff',
-      });
-    }
-  }
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.globalAlpha = p.opacity;
-      ctx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
-      if (p.x < -10) p.x = canvas.width + 10;
-      if (p.x > canvas.width + 10) p.x = -10;
-    });
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(animateParticles);
-  }
-
-  resizeCanvas();
-  createParticles();
-  animateParticles();
-  window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+    setTimeout(type, 800);
+  })();
 
   /* ===== SCROLL REVEAL ===== */
   const observer = new IntersectionObserver((entries) => {
