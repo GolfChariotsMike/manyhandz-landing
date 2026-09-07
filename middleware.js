@@ -4,9 +4,10 @@ import {
   countryFromHeaders,
   decide,
 } from './lib/geo.mjs';
+import { pixelScriptResponse } from './lib/meta-pixel.mjs';
 
 export const config = {
-  matcher: ['/', '/index.html'],
+  matcher: ['/', '/index.html', '/js/meta-pixel.js'],
 };
 
 function readCookie(header, name) {
@@ -28,6 +29,9 @@ function readCookie(header, name) {
 
 export default function middleware(request) {
   const url = new URL(request.url);
+  const pixel = pixelScriptResponse(url.pathname, process.env);
+  if (pixel) return pixel;
+
   const decision = decide({
     pathname: url.pathname,
     searchParams: url.searchParams,
