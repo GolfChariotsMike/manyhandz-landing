@@ -37,7 +37,17 @@ export default function middleware(request) {
     method: request.method,
   });
 
-  if (decision.action !== 'redirect') return;
+  if (decision.action !== 'redirect') {
+    if (!decision.setCookie) return;
+    // Continue to the origin (AU `/`) and overwrite a stale geo=us cookie.
+    // `x-middleware-next` is the Vercel / @vercel/edge continue signal.
+    return new Response(null, {
+      headers: {
+        'x-middleware-next': '1',
+        'Set-Cookie': cookieHeader(decision.setCookie),
+      },
+    });
+  }
 
   const dest = new URL(url.href);
   dest.pathname = decision.pathname;
