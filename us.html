@@ -135,11 +135,6 @@
     .nav-links a:hover, .nav-links a.active { color: var(--navy); background: var(--bg-light); }
     .nav-links .btn-gold { padding: 9px 20px; font-size: 0.9rem; }
     .nav-links .btn-gold:hover { transform: none; }
-    .nav-locale {
-      color: var(--slate-light); text-decoration: none; font-weight: 500; font-size: 0.82rem;
-      padding: 8px 10px; border-radius: 6px;
-    }
-    .nav-locale:hover { color: var(--navy); background: var(--bg-light); }
     .nav-toggle {
       display: none; background: none; border: none; cursor: pointer;
       flex-direction: column; gap: 5px; padding: 4px;
@@ -444,8 +439,8 @@
     /* ========== PRICING ========== */
     .pricing { background: var(--bg-light); }
     .pricing-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; align-items: start;
-      max-width: 760px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;
+      max-width: 1100px; margin: 0 auto;
     }
     @media (max-width: 640px) {
       .pricing-grid { grid-template-columns: 1fr; }
@@ -691,7 +686,6 @@
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
         <a href="https://app.manyhandz.ai/login">Sign in</a>
-        <a href="/?geo=au" class="nav-locale">Australia</a>
         <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started free →</a>
       </div>
       <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
@@ -705,7 +699,6 @@
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
     <a href="https://app.manyhandz.ai/login">Sign in</a>
-    <a href="/?geo=au" class="nav-locale">Australia</a>
     <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started free →</a>
   </div>
 </nav>
@@ -886,8 +879,7 @@
     </div>
     <div class="pricing-grid">
       <!-- Small Business -->
-      <div class="pricing-card popular reveal reveal-delay-1">
-        <div class="popular-badge">Most popular</div>
+      <div class="pricing-card reveal reveal-delay-1">
         <div class="plan-name">Small Business</div>
         <div class="plan-price">$199<span>/mo USD</span></div>
         <div class="plan-subtitle">600 mins/mo included</div>
@@ -901,11 +893,30 @@
           <li>Knowledge base updates</li>
           <li>Cancel anytime</li>
         </ul>
+        <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-outline-navy">Get started →</a>
+      </div>
+
+      <!-- Big Business -->
+      <div class="pricing-card popular reveal reveal-delay-2">
+        <div class="popular-badge">Big Business</div>
+        <div class="plan-name">Big Business</div>
+        <div class="plan-price">$499<span>/mo USD</span></div>
+        <div class="plan-subtitle">2,000 mins/mo included</div>
+        <ul class="plan-features">
+          <li>14-day free trial</li>
+          <li>Dedicated local US phone number</li>
+          <li>2,000 mins/mo included</li>
+          <li>AI answers every call 24/7</li>
+          <li>Message notifications via SMS</li>
+          <li>Staff call transfers</li>
+          <li>Knowledge base updates</li>
+          <li>Cancel anytime</li>
+        </ul>
         <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started →</a>
       </div>
 
       <!-- Enterprise -->
-      <div class="pricing-card reveal reveal-delay-2">
+      <div class="pricing-card reveal reveal-delay-3">
         <div class="plan-name">Enterprise</div>
         <div class="plan-price" style="font-size:2.2rem;">Custom</div>
         <div class="plan-subtitle">Multiple agents &amp; advanced integrations</div>
@@ -1107,7 +1118,6 @@
         <a href="/terms.html">Terms</a>
         <a href="#contact">Contact</a>
         <a href="https://app.manyhandz.ai/signup?country=US">Sign up</a>
-        <a href="/?geo=au">Australia</a>
       </div>
       <div class="footer-copy">© 2026 ManyHandz</div>
     </div>
@@ -1311,6 +1321,12 @@
         "@type": "Offer",
         "name": "Small Business",
         "price": "199",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Big Business",
+        "price": "499",
         "priceCurrency": "USD"
       },
       {
