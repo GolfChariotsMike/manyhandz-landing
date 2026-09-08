@@ -70,14 +70,14 @@
 
     /* ========== TYPOGRAPHY ========== */
     h1, h2, h3, h4 { color: var(--navy); font-weight: 700; line-height: 1.2; }
-    h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; }
+    h1 { font-size: clamp(2.05rem, 4.4vw, 3.35rem); font-weight: 800; letter-spacing: -0.03em; }
     h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
     h3 { font-size: 1.2rem; }
     p { color: var(--slate); }
 
     /* ========== LAYOUT ========== */
     .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 96px 0; }
+    section { padding: 80px 0; }
 
     /* ========== BUTTONS ========== */
     .btn {
@@ -156,13 +156,17 @@
     /* ========== HERO ========== */
     .hero {
       background: var(--navy);
-      padding: 110px 0 90px;
+      padding: 88px 0 56px;
       position: relative; overflow: hidden;
-      min-height: 680px;
       display: flex; align-items: center;
     }
+    .hero::after {
+      content: '';
+      position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.45), transparent);
+    }
 
-    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(201,168,76,0.12);
@@ -187,7 +191,7 @@
     }
 
     .hero h1 {
-      color: var(--white); margin-bottom: 24px;
+      color: var(--white); margin-bottom: 16px; max-width: 18.5em;
       animation: hero-h1-in 0.9s ease 0.2s both;
     }
     @keyframes hero-h1-in {
@@ -214,13 +218,26 @@
       .typewriter-line { display: none; }
       .typewriter-reduced { display: block; }
       .typewriter-word { animation: none; border-right: none; }
-      .hero-badge, .hero h1, .hero-sub, .hero-ctas, .hero-trust { animation: none; }
+      .hero-badge, .hero h1, .hero-typewriter, .hero-wedge, .hero-sub, .hero-ctas, .hero-trust, .trade-chips { animation: none; }
       .badge-dot { animation: none; }
     }
 
+    .hero-typewriter {
+      color: rgba(255,255,255,0.88);
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-weight: 600; line-height: 1.4;
+      margin-bottom: 14px; min-height: 1.45em;
+      animation: hero-sub-in 0.9s ease 0.35s both;
+    }
+    .hero-wedge {
+      color: var(--gold-light);
+      font-size: 1.05rem; font-weight: 600;
+      margin-bottom: 18px; letter-spacing: -0.01em;
+      animation: hero-sub-in 0.9s ease 0.4s both;
+    }
     .hero-sub {
-      color: rgba(255,255,255,0.75); font-size: 1.2rem;
-      max-width: 580px; margin-bottom: 40px; line-height: 1.75;
+      color: rgba(255,255,255,0.72); font-size: 1.08rem;
+      max-width: 620px; margin-bottom: 28px; line-height: 1.7;
       animation: hero-sub-in 0.9s ease 0.45s both;
     }
     @keyframes hero-sub-in {
@@ -228,7 +245,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .hero-ctas {
-      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px;
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px;
       animation: hero-ctas-in 0.9s ease 0.6s both;
     }
     @keyframes hero-ctas-in {
@@ -242,30 +259,47 @@
     }
     .hero-trust span { display: flex; align-items: center; gap: 5px; }
 
-    /* ========== STATS STRIP ========== */
-    .stats-strip {
-      background: var(--navy);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-      padding: 40px 0;
+    .trade-chips {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 28px;
+      animation: hero-ctas-in 0.9s ease 0.85s both;
     }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
+    .trade-chip {
+      display: inline-flex; align-items: center;
+      padding: 6px 14px; border-radius: 100px;
+      border: 1px solid rgba(201,168,76,0.32);
+      color: var(--gold-light); text-decoration: none;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em;
+      background: rgba(201,168,76,0.08);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .trade-chip:hover {
+      background: rgba(201,168,76,0.16);
+      border-color: var(--gold);
+    }
+
+    /* ========== PROOF STRIP ========== */
+    .proof-strip {
+      background: #0b1830;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 22px 0;
+    }
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
       gap: 0; text-align: center;
     }
-    .stat-item {
-      padding: 24px;
+    .proof-item {
+      padding: 10px 14px;
       border-right: 1px solid rgba(255,255,255,0.08);
     }
-    .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-size: 2.6rem; font-weight: 800;
-      color: var(--gold); line-height: 1;
-      letter-spacing: -1px;
+    .proof-item:last-child { border-right: none; }
+    .proof-value {
+      font-size: 0.92rem; font-weight: 700;
+      color: var(--gold); line-height: 1.3;
     }
-    .stat-label {
-      color: rgba(255,255,255,0.55); font-size: 0.9rem;
-      margin-top: 6px; font-weight: 500;
+    .proof-label {
+      color: rgba(255,255,255,0.5); font-size: 0.78rem;
+      margin-top: 4px; font-weight: 500;
     }
 
     /* ========== SCROLL ANIMATION ========== */
@@ -312,7 +346,6 @@
     }
 
     /* ========== FEATURES ========== */
-    .features { background: var(--white); }
     .section-header { text-align: center; margin-bottom: 60px; }
     .section-header p { color: var(--slate-light); font-size: 1.1rem; margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; }
     .section-eyebrow {
@@ -321,28 +354,63 @@
       text-transform: uppercase; color: var(--gold);
       margin-bottom: 12px;
     }
-    .features-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    .product-moment { background: var(--white); }
+    .demo-stage {
+      display: grid; grid-template-columns: 1fr 230px 1fr;
+      gap: 20px; align-items: stretch; margin-top: 8px;
     }
-    .feature-card {
-      padding: 32px 28px; border-radius: var(--radius);
-      border: 1px solid var(--border); background: var(--white);
-      transition: all 0.3s ease; position: relative; overflow: hidden;
+    .demo-channel {
+      background: var(--navy); border-radius: 16px; overflow: hidden;
+      box-shadow: var(--shadow-lg); display: flex; flex-direction: column;
+      border: 1px solid rgba(201,168,76,0.18);
     }
-    .feature-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
-      opacity: 0; transition: opacity 0.3s ease;
+    .demo-channel-head {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 16px; background: var(--navy-light);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #fff; font-size: 0.84rem; font-weight: 600;
     }
-    .feature-card:hover { box-shadow: var(--shadow-lg); border-color: rgba(201,168,76,0.35); transform: translateY(-4px); }
-    .feature-card:hover::before { opacity: 1; }
-    .feature-icon {
-      font-size: 2.2rem; margin-bottom: 16px; display: block;
-      filter: drop-shadow(0 2px 8px rgba(201,168,76,0.25));
+    .demo-channel-head small {
+      display: block; font-weight: 500; color: rgba(255,255,255,0.5);
+      font-size: 0.72rem; margin-top: 1px;
     }
-    .feature-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: var(--navy); }
-    .feature-card p { font-size: 0.93rem; color: var(--slate-light); line-height: 1.65; }
+    .demo-live {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.7);
+    }
+    .demo-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .bubble {
+      max-width: 94%; padding: 10px 12px; border-radius: 12px;
+      font-size: 0.86rem; line-height: 1.5;
+    }
+    .bubble-in { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.88); align-self: flex-start; }
+    .bubble-out { background: rgba(201,168,76,0.18); color: var(--gold-light); align-self: flex-end; }
+    .bubble-meta {
+      font-size: 0.68rem; opacity: 0.65; margin-bottom: 4px;
+      font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .kb-card {
+      background: var(--bg-light); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 18px;
+      display: flex; flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+    .kb-card .section-eyebrow { margin-bottom: 8px; }
+    .kb-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .kb-card > p { font-size: 0.82rem; color: var(--slate-light); margin-bottom: 14px; line-height: 1.5; }
+    .kb-fact {
+      font-size: 0.84rem; color: var(--slate);
+      padding: 9px 0; border-bottom: 1px solid var(--border);
+      line-height: 1.45;
+    }
+    .kb-fact:last-child { border-bottom: none; }
+    .kb-fact strong { color: var(--navy); display: block; font-size: 0.78rem; }
+    .product-captions {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 28px;
+    }
+    .product-caption h3 { font-size: 1rem; margin-bottom: 6px; }
+    .product-caption p { font-size: 0.9rem; color: var(--slate-light); line-height: 1.6; }
 
     /* ========== HOW IT WORKS ========== */
     .how-it-works { background: var(--navy); padding: 96px 0; }
@@ -403,6 +471,14 @@
     .plan-name { font-size: 0.9rem; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
     .plan-price { font-size: 3rem; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; letter-spacing: -2px; }
     .plan-price span { font-size: 1.1rem; font-weight: 500; color: var(--slate-light); letter-spacing: 0; }
+    .pricing-why {
+      color: var(--slate); font-size: 1.02rem; line-height: 1.65;
+      max-width: 640px; margin: 0 auto 12px; text-align: center;
+    }
+    .pricing-note {
+      color: var(--slate-light); font-size: 0.92rem; line-height: 1.6;
+      max-width: 640px; margin: 0 auto 40px; text-align: center;
+    }
     .plan-subtitle { color: var(--slate-light); font-size: 0.9rem; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
     .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
     .plan-features li {
@@ -438,31 +514,42 @@
     }
     .pro-hint { font-size: 0.82rem; color: var(--slate-light); margin-bottom: 20px; }
 
-    /* ========== SOCIAL PROOF ========== */
-    .social-proof { background: var(--white); }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px;
+    /* ========== TRUST ========== */
+    .trust-block { background: var(--white); }
+    .trust-panel {
+      max-width: 720px; margin: 0 auto; text-align: center;
+      background: var(--bg-light); border: 1px solid var(--border);
+      border-radius: 16px; padding: 48px 36px;
     }
-    .testimonial-card {
-      background: var(--bg-light); border-radius: var(--radius);
-      padding: 32px; border: 1px solid var(--border);
-      transition: all 0.3s ease; position: relative;
+    .trust-panel h2 { margin-bottom: 12px; }
+    .trust-panel p { max-width: 540px; margin: 0 auto 24px; }
+    .trust-points {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      margin-bottom: 28px;
     }
-    .testimonial-card:hover {
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(201,168,76,0.25);
-      transform: translateY(-3px);
+    .trust-point {
+      font-size: 0.82rem; font-weight: 600; color: var(--navy);
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 100px; padding: 6px 14px;
     }
-    .stars {
-      color: var(--gold); font-size: 1rem; margin-bottom: 16px;
-      letter-spacing: 2px;
+    .trust-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========== CONNECTIONS ========== */
+    .connections { background: var(--bg-light); padding: 64px 0; }
+    .connections-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 28px; flex-wrap: wrap;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 32px;
     }
-    .testimonial-card blockquote {
-      font-style: italic; color: var(--slate); font-size: 0.97rem;
-      line-height: 1.75; margin-bottom: 20px;
+    .connections-copy h2 { font-size: 1.35rem; margin-bottom: 8px; }
+    .connections-copy p { font-size: 0.95rem; max-width: 640px; }
+    .connections-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .connections-tag {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em;
+      color: var(--navy); background: var(--bg-light);
+      border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px;
     }
-    .testimonial-author { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
-    .testimonial-business { font-size: 0.85rem; color: var(--slate-light); margin-top: 2px; }
 
     /* ========== ACCESSIBILITY ========== */
     .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -588,25 +675,26 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 900px) {
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
       .security-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .stat-item:nth-child(2) { border-right: none; }
-      .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.08); }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .proof-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .proof-item:nth-child(2), .proof-item:nth-child(4) { border-right: none; }
+      .demo-stage { grid-template-columns: 1fr; }
+      .product-captions { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
       .steps-grid::before { display: none; }
       .ps-grid { grid-template-columns: 1fr; }
       .contact-wrapper { grid-template-columns: 1fr; }
+      .connections-row { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 640px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
       .security-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .proof-grid { grid-template-columns: 1fr; }
+      .proof-item { border-right: none; }
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
       .steps-grid { grid-template-columns: 1fr; }
+      .typewriter-word { white-space: normal; }
     }
   </style>
 </head>
@@ -652,18 +740,24 @@
       </div>
 
       <h1>
-        <span class="visually-hidden">Your AI team that handles calls, web chats, bookings, quotes, and customer service</span>
-        <span class="typewriter-line" aria-hidden="true">Your AI team that handles <span class="typewriter-word" id="typewriter">calls</span></span>
-        <span class="typewriter-reduced" aria-hidden="true">Your AI team that handles calls, web chats, bookings, quotes, and customer service</span>
+        <span class="visually-hidden">Missed calls become booked jobs — and your website chat is covered too. Catch every missed call, after-hours lead, and website enquiry.</span>
+        <span aria-hidden="true">Missed calls become <span class="gold-text">booked jobs</span> — and your website chat is covered too.</span>
       </h1>
 
+      <p class="hero-typewriter">
+        <span class="typewriter-line" aria-hidden="true">Catch every <span class="typewriter-word" id="typewriter">missed call</span></span>
+        <span class="typewriter-reduced" aria-hidden="true">Catch every missed call, after-hours lead, and website enquiry</span>
+      </p>
+
+      <p class="hero-wedge">AI that answers the phone and your website — one knowledge base.</p>
+
       <p class="hero-sub">
-        ManyHandz answers the phone and your website chat — one AI that actually knows your business. Built for Australian tradies and field-service SMBs: HVAC, plumbing, electrical, and more. Live in under 5 minutes.
+        Built for Australian tradies and field-service SMBs: HVAC, plumbing, electrical, and more. Live in under 5 minutes. 14-day free trial.
       </p>
 
       <div class="hero-ctas">
-        <a href="https://app.manyhandz.ai/signup" class="btn btn-gold">Get started free →</a>
-        <a href="/try" class="btn btn-outline">Hear it live</a>
+        <a href="/try" class="btn btn-gold">Hear it live</a>
+        <a href="https://app.manyhandz.ai/signup" class="btn btn-outline">Get started free →</a>
       </div>
 
       <div class="hero-trust">
@@ -673,29 +767,42 @@
         <span>·</span>
         <span>✓ Cancel anytime</span>
       </div>
+
+      <div class="trade-chips" aria-label="Trades we work with">
+        <a class="trade-chip" href="#products">HVAC</a>
+        <a class="trade-chip" href="#products">Plumbing</a>
+        <a class="trade-chip" href="#products">Electrical</a>
+        <a class="trade-chip" href="#products">Roofing</a>
+        <a class="trade-chip" href="#products">Landscaping</a>
+        <a class="trade-chip" href="#products">Pest control</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
+<!-- HONEST PROOF -->
+<div class="proof-strip">
   <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal">
-        <div class="stat-num" data-target="100" data-suffix="%">0%</div>
-        <div class="stat-label">Australian owned &amp; operated</div>
+    <div class="proof-grid">
+      <div class="proof-item">
+        <div class="proof-value">Dedicated AU number</div>
+        <div class="proof-label">Callers get a local answer</div>
       </div>
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-num" data-target="24" data-suffix="/7">0/7</div>
-        <div class="stat-label">Always on — never offline</div>
+      <div class="proof-item">
+        <div class="proof-value">Australian owned</div>
+        <div class="proof-label">Built in Perth</div>
       </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-num" data-target="5" data-suffix=" min">0 min</div>
-        <div class="stat-label">Average setup time</div>
+      <div class="proof-item">
+        <div class="proof-value">Under 5 minutes</div>
+        <div class="proof-label">Live after we scan your site</div>
       </div>
-      <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-num" data-target="0" data-suffix=" setup fee">$0 setup</div>
-        <div class="stat-label">Nothing to configure</div>
+      <div class="proof-item">
+        <div class="proof-value">14-day free trial</div>
+        <div class="proof-label">No setup fee · cancel anytime</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-value">24/7 answering</div>
+        <div class="proof-label">Phone and website chat</div>
       </div>
     </div>
   </div>
@@ -728,43 +835,94 @@
 </section>
 
 <!-- PRODUCTS -->
-<section class="features" id="products">
+<section class="product-moment" id="products">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-eyebrow">Products</span>
-      <h2>Voice, chat, and one knowledge base.</h2>
-      <p>Set up your business info once — your AI uses it to answer the phone and your website chat. Built for Australian tradies and small field-service businesses.</p>
+      <h2>One knowledge base. Two channels.</h2>
+      <p>Same hours, services, and FAQs — on the phone and on your website. Built for Australian tradies and small field-service businesses.</p>
     </div>
-    <div class="features-grid">
-      <div class="feature-card reveal reveal-delay-1">
-        <span class="feature-icon">📞</span>
+
+    <div class="demo-stage reveal">
+      <div class="demo-channel">
+        <div class="demo-channel-head">
+          <span class="demo-live" aria-hidden="true"></span>
+          <div>
+            Incoming call
+            <small>Dedicated Australian number · Metro Plumbing (example)</small>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="bubble bubble-in">
+            <div class="bubble-meta">Caller</div>
+            Can you come Saturday? I've got no hot water.
+          </div>
+          <div class="bubble bubble-out">
+            <div class="bubble-meta">ManyHandz</div>
+            Yes — we're open Saturday 7am to 5pm. I can take your address and a callback number so the team books you in.
+          </div>
+          <div class="bubble bubble-in">
+            <div class="bubble-meta">Caller</div>
+            14 Banksia Street. After 10 is best.
+          </div>
+          <div class="bubble bubble-out">
+            <div class="bubble-meta">ManyHandz</div>
+            Got it. I'll leave a message with the address, the hot water issue, and Saturday after 10.
+          </div>
+        </div>
+      </div>
+
+      <div class="kb-card">
+        <span class="section-eyebrow">Shared source</span>
+        <h3>Knowledge base</h3>
+        <p>Set up once. Voice and chat both read these facts.</p>
+        <div class="kb-fact"><strong>Hours</strong> Mon–Sat 7am–5pm. After-hours: take a message.</div>
+        <div class="kb-fact"><strong>Services</strong> Hot water, blocked drains, leak repairs.</div>
+        <div class="kb-fact"><strong>What to do</strong> Screen, answer FAQs, take a message, transfer VIPs.</div>
+        <div class="kb-fact"><strong>Tone</strong> Direct, local, no fluff.</div>
+      </div>
+
+      <div class="demo-channel">
+        <div class="demo-channel-head">
+          <span class="demo-live" aria-hidden="true"></span>
+          <div>
+            Website chat
+            <small>Same business · same facts</small>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="bubble bubble-in">
+            <div class="bubble-meta">Website visitor</div>
+            Do you fix blocked drains, or just hot water?
+          </div>
+          <div class="bubble bubble-out">
+            <div class="bubble-meta">ManyHandz</div>
+            Both — blocked drains and hot water are on the board. Want us to call you back?
+          </div>
+          <div class="bubble bubble-in">
+            <div class="bubble-meta">Website visitor</div>
+            Yes. After 10 Saturday if you can.
+          </div>
+          <div class="bubble bubble-out">
+            <div class="bubble-meta">ManyHandz</div>
+            Done. I'll pass that to the team with your number — same hours, same list.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-captions">
+      <div class="product-caption reveal reveal-delay-1">
         <h3>Voice</h3>
-        <p>AI answers your phone calls 24/7. Screens callers, handles FAQs, takes messages, and transfers important calls directly to you.</p>
+        <p>AI answers your phone 24/7. Screens callers, handles FAQs, takes messages, and transfers important calls to you.</p>
       </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <span class="feature-icon">💬</span>
-        <h3>Chat Widget</h3>
-        <p>AI chat on your website. Answers visitor questions instantly using your knowledge base. Hands off to a human when needed.</p>
+      <div class="product-caption reveal reveal-delay-2">
+        <h3>Website chat</h3>
+        <p>A chat widget on your site. Answers visitor questions from the same knowledge base, and hands off to a human when needed.</p>
       </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <span class="feature-icon">🧠</span>
-        <h3>One Knowledge Base</h3>
-        <p>Your services, FAQs, hours, and tone — set up once in the ManyHandz dashboard. Voice and chat both draw from the same source of truth.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-1">
-        <span class="feature-icon">📱</span>
-        <h3>Dedicated Australian number</h3>
-        <p>A dedicated AU phone number for your business. Callers get a local answer that knows your hours, services, and how you work.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <span class="feature-icon">🔒</span>
-        <h3>Private &amp; Secure</h3>
-        <p>Your data stays yours. No sharing between clients, no training on your information. Complete data isolation.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <span class="feature-icon">🇦🇺</span>
-        <h3>Australian Owned</h3>
-        <p>Built and operated in Perth, Australia. Real people, real support — not another faceless SaaS.</p>
+      <div class="product-caption reveal reveal-delay-3">
+        <h3>One knowledge base</h3>
+        <p>Services, FAQs, hours, and tone — set up once. Phone and chat draw from the same source of truth.</p>
       </div>
     </div>
   </div>
@@ -803,28 +961,48 @@
   </div>
 </section>
 
+<!-- CONNECTIONS -->
+<section class="connections" id="connections">
+  <div class="container">
+    <div class="connections-row reveal">
+      <div class="connections-copy">
+        <span class="section-eyebrow">Connections</span>
+        <h2>Talk to us to connect other tools.</h2>
+        <p>Grok Bot can use the same knowledge base for inbox work if you already use it with Gmail. We don't list job-management logos we haven't shipped — if you need something connected, ask.</p>
+        <div class="connections-tags">
+          <span class="connections-tag">Grok Bot · same knowledge base</span>
+          <span class="connections-tag">Other tools · talk to us</span>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn-outline-navy">Contact us</a>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-eyebrow">Pricing</span>
       <h2>Simple, honest pricing</h2>
-      <p>14-day free trial. No setup fees. Cancel anytime.</p>
+      <p class="pricing-why">Less than missing one job. A lot less than a full-time receptionist.</p>
+      <p class="pricing-note">Minutes are phone talk time. Website chat is included on every plan. 14-day free trial. No setup fees. Cancel anytime.</p>
     </div>
     <div class="pricing-grid">
       <!-- Small Business -->
       <div class="pricing-card reveal reveal-delay-1">
         <div class="plan-name">Small Business</div>
         <div class="plan-price">$199<span>/mo AUD</span></div>
-        <div class="plan-subtitle">600 mins/mo included</div>
+        <div class="plan-subtitle">600 minutes of phone talk time / month</div>
         <ul class="plan-features">
+          <li>Phone answering + website chat</li>
           <li>14-day free trial</li>
           <li>Dedicated AU phone number</li>
-          <li>600 mins/mo included</li>
+          <li>600 minutes of phone talk time / month</li>
           <li>AI answers every call 24/7</li>
           <li>Message notifications via SMS</li>
           <li>Staff call transfers</li>
-          <li>Knowledge base updates</li>
+          <li>One knowledge base for both channels</li>
           <li>Cancel anytime</li>
         </ul>
         <a href="https://app.manyhandz.ai/signup" class="btn btn-outline-navy">Get started →</a>
@@ -835,15 +1013,16 @@
         <div class="popular-badge">Big Business</div>
         <div class="plan-name">Big Business</div>
         <div class="plan-price">$499<span>/mo AUD</span></div>
-        <div class="plan-subtitle">2,000 mins/mo included</div>
+        <div class="plan-subtitle">2,000 minutes of phone talk time / month</div>
         <ul class="plan-features">
+          <li>Phone answering + website chat</li>
           <li>14-day free trial</li>
           <li>Dedicated AU phone number</li>
-          <li>2,000 mins/mo included</li>
+          <li>2,000 minutes of phone talk time / month</li>
           <li>AI answers every call 24/7</li>
           <li>Message notifications via SMS</li>
           <li>Staff call transfers</li>
-          <li>Knowledge base updates</li>
+          <li>One knowledge base for both channels</li>
           <li>Cancel anytime</li>
         </ul>
         <a href="https://app.manyhandz.ai/signup" class="btn btn-gold">Get started →</a>
@@ -855,12 +1034,12 @@
         <div class="plan-price" style="font-size:2.2rem;">Custom</div>
         <div class="plan-subtitle">Multiple agents &amp; advanced integrations</div>
         <ul class="plan-features">
+          <li>Phone answering + website chat at scale</li>
           <li>Multiple AI agents across your business</li>
-          <li>Custom integrations &amp; workflows</li>
+          <li>Custom integrations &amp; workflows — talk to us</li>
           <li>Dedicated onboarding &amp; setup</li>
           <li>Priority support</li>
           <li>Custom minute pools</li>
-          <li>Tailored to your business</li>
         </ul>
         <a href="mailto:hello@manyhandz.ai" class="btn btn-outline-navy">Contact us →</a>
       </div>
@@ -868,31 +1047,22 @@
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
-<section class="social-proof">
+<!-- TRUST -->
+<section class="trust-block">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">What people are saying</span>
-      <h2>Real businesses. Real results.</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="stars">★★★★★</div>
-        <blockquote>"I was missing jobs because I couldn't get to the phone on site. Now every call gets answered — and I get the message while I'm still on the tools. That's when I knew this was different."</blockquote>
-        <div class="testimonial-author">Sarah M.</div>
-        <div class="testimonial-business">Operations Manager, Perth</div>
+    <div class="trust-panel reveal">
+      <span class="section-eyebrow">Early days · Perth-built</span>
+      <h2>Australian owned. Built for the van, not the boardroom.</h2>
+      <p>We're a Perth team working with tradies who can't afford a missed call. No fabricated review counts — hear a live call, then start a 14-day trial if it fits.</p>
+      <div class="trust-points">
+        <span class="trust-point">Dedicated Australian number</span>
+        <span class="trust-point">Australian owned</span>
+        <span class="trust-point">Live in under 5 minutes</span>
+        <span class="trust-point">14-day free trial</span>
       </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="stars">★★★★★</div>
-        <blockquote>"I was sceptical — I've tried every AI tool. ManyHandz is the first one that actually reduced my workload instead of adding to it."</blockquote>
-        <div class="testimonial-author">James T.</div>
-        <div class="testimonial-business">Small Business Owner, WA</div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-3">
-        <div class="stars">★★★★★</div>
-        <blockquote>"The setup was literally 5 minutes. It scanned our website, learned the business, and started answering the phones the same day. No faff."</blockquote>
-        <div class="testimonial-author">Leanne B.</div>
-        <div class="testimonial-business">Consultant, Australia</div>
+      <div class="trust-ctas">
+        <a href="/try" class="btn btn-gold">Hear it live</a>
+        <a href="https://app.manyhandz.ai/signup" class="btn btn-outline-navy">Get started free →</a>
       </div>
     </div>
   </div>
@@ -1024,10 +1194,10 @@
 <!-- CTA STRIP -->
 <div class="cta-strip reveal">
   <div class="container">
-    <h2>Ready to get your time back?</h2>
-    <p>14-day free trial. Set up in minutes. Cancel anytime.</p>
-    <a href="https://app.manyhandz.ai/signup" class="btn btn-gold">Get started free →</a>
-    <p class="cta-alt"><a href="/try">Or hear a live demo call</a></p>
+    <h2>Ready to stop missing jobs?</h2>
+    <p>Hear a live call, then start a 14-day trial. Set up in minutes. Cancel anytime.</p>
+    <a href="/try" class="btn btn-gold">Hear it live</a>
+    <p class="cta-alt"><a href="https://app.manyhandz.ai/signup">Or get started free →</a></p>
   </div>
 </div>
 
@@ -1110,7 +1280,7 @@
     if (!el) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const words = ['calls', 'web chats', 'bookings', 'quotes', 'customer service'];
+    const words = ['missed call', 'after-hours lead', 'website enquiry'];
     let wordIdx = 0, charIdx = 0, deleting = false;
 
     function type() {
@@ -1144,33 +1314,6 @@
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  /* ===== ANIMATED COUNTERS ===== */
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    if (isNaN(target)) return;
-    const duration = 1800;
-    const start = performance.now();
-    function update(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const val = Math.round(eased * target);
-      el.textContent = val + suffix;
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
-
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('[data-target]').forEach(animateCounter);
-        counterObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.stats-strip').forEach(el => counterObserver.observe(el));
 
   /* ===== PRO TIER DROPDOWN ===== */
   /* Pro tier dropdown removed — simplified pricing */
