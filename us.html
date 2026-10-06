@@ -164,7 +164,49 @@
       content: '';
       position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
       background: linear-gradient(90deg, transparent, rgba(201,168,76,0.45), transparent);
+      z-index: 1;
     }
+    .ambient-wash {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .hero .ambient-wash::before,
+    .hero .ambient-wash::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+    }
+    .hero .ambient-wash::before {
+      width: 58%; height: 78%; left: -12%; top: -28%;
+      background: radial-gradient(circle, rgba(201,168,76,0.20), transparent 68%);
+      animation: wash-drift-a 28s ease-in-out infinite alternate;
+    }
+    .hero .ambient-wash::after {
+      width: 52%; height: 86%; right: -14%; bottom: -36%;
+      background: radial-gradient(circle, rgba(52, 104, 184, 0.32), transparent 70%);
+      animation: wash-drift-b 34s ease-in-out infinite alternate;
+    }
+    @keyframes wash-drift-a {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(7%, 9%, 0) scale(1.08); }
+    }
+    @keyframes wash-drift-b {
+      from { transform: translate3d(0, 0, 0) scale(1.06); }
+      to { transform: translate3d(-8%, -7%, 0) scale(1); }
+    }
+    .hero-callout {
+      color: rgba(255,255,255,0.62);
+      font-size: 0.95rem;
+      margin: -8px 0 18px;
+      animation: hero-ctas-in 0.9s ease 0.68s both;
+    }
+    .hero-callout a {
+      color: var(--gold-light);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232,201,122,0.5);
+    }
+    .hero-callout a:hover { color: var(--gold); }
 
     .hero-content { position: relative; z-index: 1; max-width: 860px; }
     .hero-badge {
@@ -218,8 +260,11 @@
       .typewriter-line { display: none; }
       .typewriter-reduced { display: block; }
       .typewriter-word { animation: none; border-right: none; }
-      .hero-badge, .hero h1, .hero-typewriter, .hero-wedge, .hero-sub, .hero-ctas, .hero-trust, .trade-chips { animation: none; }
+      .hero-badge, .hero h1, .hero-typewriter, .hero-wedge, .hero-sub, .hero-ctas, .hero-callout, .hero-trust, .trade-chips { animation: none; }
       .badge-dot { animation: none; }
+      .ambient-wash, .ambient-wash::before, .ambient-wash::after { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .faq-answer { transition: none; }
     }
 
     .hero-typewriter {
@@ -413,7 +458,27 @@
     .product-caption p { font-size: 0.9rem; color: var(--slate-light); line-height: 1.6; }
 
     /* ========== HOW IT WORKS ========== */
-    .how-it-works { background: var(--navy); padding: 96px 0; }
+    .how-it-works { background: var(--navy); padding: 96px 0; position: relative; overflow: hidden; }
+    .how-it-works .container { position: relative; z-index: 1; }
+    .how-it-works .ambient-wash {
+      background-image:
+        linear-gradient(rgba(201,168,76,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.08) 1px, transparent 1px);
+      background-size: 84px 84px;
+      animation: grid-drift 42s linear infinite;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 42%, #000 18%, transparent 74%);
+      mask-image: radial-gradient(ellipse at 50% 42%, #000 18%, transparent 74%);
+    }
+    @keyframes grid-drift {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 84px 84px, 84px 84px; }
+    }
+    .how-it-works::after {
+      content: '';
+      position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
+      background: linear-gradient(to bottom, transparent, rgba(248,249,251,0.16));
+      pointer-events: none; z-index: 1;
+    }
     .how-it-works h2 { color: var(--white); }
     .how-it-works .section-header p { color: rgba(255,255,255,0.6); }
     .steps-grid {
@@ -442,18 +507,31 @@
     .step p { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.6; }
 
     /* ========== PRICING ========== */
-    .pricing { background: var(--bg-light); }
+    .pricing { background: var(--bg-light); position: relative; }
+    .pricing::before,
+    .problem-solution::before,
+    .connections::before,
+    .trust-block::before,
+    .faq::before {
+      content: '';
+      position: absolute; left: 0; right: 0; top: 0; height: 56px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(15,31,61,0.045), transparent);
+    }
+    .problem-solution, .connections, .trust-block, .faq { position: relative; }
+    #pricing, #faq, #contact, #how-it-works { scroll-margin-top: 84px; }
     .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch;
       max-width: 1100px; margin: 0 auto;
     }
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
       .pricing-grid { grid-template-columns: 1fr; }
     }
     .pricing-card {
       background: var(--white); border-radius: 16px;
       padding: 40px 36px; border: 2px solid var(--border);
       position: relative; transition: all 0.3s ease;
+      display: flex; flex-direction: column;
     }
     .pricing-card:hover { box-shadow: var(--shadow-lg); }
     .pricing-card.popular {
@@ -471,6 +549,29 @@
     .plan-name { font-size: 0.9rem; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
     .plan-price { font-size: 3rem; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; letter-spacing: -2px; }
     .plan-price span { font-size: 1.1rem; font-weight: 500; color: var(--slate-light); letter-spacing: 0; }
+    .plan-price-word { font-size: clamp(2rem, 3vw, 2.6rem); letter-spacing: -0.04em; margin-bottom: 8px; }
+    .plan-kicker {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px;
+    }
+    .pricing-card.setup {
+      background: linear-gradient(180deg, #fffdf6 0%, #fff 42%);
+      border-color: rgba(201,168,76,0.55);
+    }
+    .plan-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+    .plan-demo {
+      display: flex; flex-direction: column; gap: 2px;
+      text-decoration: none; border-radius: 10px;
+      padding: 12px 14px; background: var(--navy);
+      border: 1px solid rgba(201,168,76,0.35);
+    }
+    .plan-demo:hover { border-color: var(--gold); }
+    .plan-demo-kicker {
+      color: var(--gold); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .plan-demo-label { color: #fff; font-weight: 600; font-size: 0.98rem; }
     .pricing-why {
       color: var(--slate); font-size: 1.02rem; line-height: 1.65;
       max-width: 640px; margin: 0 auto 12px; text-align: center;
@@ -487,6 +588,7 @@
     }
     .plan-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
     .pricing-card .btn { width: 100%; justify-content: center; }
+    .pricing-card > .btn { margin-top: auto; }
     .pricing-card.popular .btn-gold {
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
       box-shadow: 0 4px 16px rgba(201,168,76,0.3);
@@ -555,16 +657,40 @@
     .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
     /* ========== FAQ SECTION ========== */
-    .faq { padding: 80px 0; background: var(--bg-light); }
-    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-    .faq-item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 22px 24px; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: background 0.2s; }
-    .faq-question:hover { background: var(--bg-light); }
-    .faq-question .faq-icon { font-size: 1.2rem; color: var(--gold); flex-shrink: 0; transition: transform 0.3s; }
+    .faq { padding: 104px 0 96px; background: #fff; }
+    .faq-lead {
+      color: var(--slate); font-size: 1.12rem; line-height: 1.65;
+      max-width: 640px; margin: 14px auto 0;
+    }
+    .faq-groups { max-width: 880px; margin: 8px auto 0; display: flex; flex-direction: column; gap: 36px; }
+    .faq-group-label {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold-dark); margin-bottom: 12px;
+    }
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .faq-item.open {
+      border-color: rgba(201,168,76,0.6);
+      box-shadow: 0 10px 32px rgba(15,31,61,0.06);
+    }
+    .faq-question {
+      width: 100%; background: none; border: none; text-align: left;
+      padding: 26px 28px; font-family: inherit;
+      font-size: clamp(1.08rem, 1.6vw, 1.28rem); font-weight: 700;
+      letter-spacing: -0.02em; color: var(--navy); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      transition: background 0.2s;
+    }
+    .faq-question:hover { background: #fbfcfe; }
+    .faq-question .faq-icon { font-size: 1.45rem; font-weight: 500; color: var(--gold); flex-shrink: 0; transition: transform 0.3s; line-height: 1; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
-    .faq-answer p { padding: 0 24px 22px; color: var(--slate); line-height: 1.7; }
-    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease; }
+    .faq-answer > div { overflow: hidden; }
+    .faq-answer p { padding: 0 28px 28px; color: var(--slate); line-height: 1.75; font-size: 1.05rem; max-width: 68ch; }
+    .faq-item.open .faq-answer { grid-template-rows: 1fr; }
 
     /* ========== SECURITY ========== */
     .security { background: var(--navy); padding: 80px 0; }
@@ -695,6 +821,8 @@
       .nav-toggle { display: flex; }
       .steps-grid { grid-template-columns: 1fr; }
       .typewriter-word { white-space: normal; }
+      .faq-question { padding: 20px 18px; }
+      .faq-answer p { padding: 0 18px 22px; }
     }
   </style>
 </head>
@@ -732,6 +860,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="ambient-wash" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge">
@@ -759,6 +888,7 @@
         <a href="/try" class="btn btn-gold">Hear it live</a>
         <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-outline">Get started free →</a>
       </div>
+      <p class="hero-callout"><a href="/try">Call the AI</a> — live demo, anytime. No sales pitch.</p>
 
       <div class="hero-trust">
         <span>✓ 14-day free trial</span>
@@ -930,6 +1060,7 @@
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works" id="how-it-works">
+  <div class="ambient-wash" aria-hidden="true"></div>
   <div class="container">
     <div class="section-header reveal">
       <span class="section-eyebrow" style="color: var(--gold-light);">The process</span>
@@ -986,7 +1117,7 @@
       <span class="section-eyebrow">Pricing</span>
       <h2>Simple, honest pricing</h2>
       <p class="pricing-why">Less than missing one job. A lot less than a full-time receptionist.</p>
-      <p class="pricing-note">Minutes are phone talk time. Website chat is included on every plan. 14-day free trial. No setup fees. Cancel anytime.</p>
+      <p class="pricing-note">Minutes are phone talk time. Website chat is included on every plan. 14-day free trial. No setup fees. Cancel anytime. Full business setup is custom — talk to us if you want us to build it with you.</p>
     </div>
     <div class="pricing-grid">
       <!-- Small Business -->
@@ -1028,20 +1159,26 @@
         <a href="https://app.manyhandz.ai/signup?country=US" class="btn btn-gold">Get started →</a>
       </div>
 
-      <!-- Enterprise -->
-      <div class="pricing-card reveal reveal-delay-3">
-        <div class="plan-name">Enterprise</div>
-        <div class="plan-price" style="font-size:2.2rem;">Custom</div>
-        <div class="plan-subtitle">Multiple agents &amp; advanced integrations</div>
+      <!-- Full business setup -->
+      <div class="pricing-card setup reveal reveal-delay-3">
+        <div class="plan-name">Full business setup</div>
+        <div class="plan-kicker">Custom</div>
+        <div class="plan-price plan-price-word">Talk to us</div>
+        <div class="plan-subtitle">Done with you — systems, go-live, ongoing support</div>
         <ul class="plan-features">
-          <li>Phone answering + website chat at scale</li>
-          <li>Multiple AI agents across your business</li>
-          <li>Custom integrations &amp; workflows — talk to us</li>
-          <li>Dedicated onboarding &amp; setup</li>
-          <li>Priority support</li>
-          <li>Custom minute pools</li>
+          <li>Discovery &amp; process mapping for your office</li>
+          <li>Wire phone and chat into how you already work (job software where we support it)</li>
+          <li>Hands-on setup, training, and go-live</li>
+          <li>Ongoing advisor support as you grow</li>
+          <li>Same demo line — call our AI anytime</li>
         </ul>
-        <a href="mailto:hello@manyhandz.ai" class="btn btn-outline-navy">Contact us →</a>
+        <div class="plan-actions">
+          <a class="plan-demo" href="/try">
+            <span class="plan-demo-kicker">Call the AI</span>
+            <span class="plan-demo-label">Hear it live — anytime</span>
+          </a>
+          <a href="#contact" class="btn btn-outline-navy">Learn more</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1072,88 +1209,143 @@
 <section class="faq" id="faq">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-eyebrow">Common questions</span>
-      <h2>Frequently asked questions</h2>
+      <span class="section-eyebrow">Questions, answered</span>
+      <h2>Straight answers before you decide</h2>
+      <p class="faq-lead">Plain English for the office and the job site. Self-serve prices stay on the page. Your people stay in charge.</p>
     </div>
-    <div class="faq-list">
+    <div class="faq-groups">
 
-      <div class="faq-item reveal">
-        <button class="faq-question" aria-expanded="false">
-          What is ManyHandz?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>ManyHandz is an AI phone answering service and website chat widget — both powered by one knowledge base that knows your business inside out. Set up in under 5 minutes.</p>
+      <div class="faq-group">
+        <div class="faq-group-label">Your people</div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <button class="faq-question" type="button" aria-expanded="true">
+              Will this replace my office staff?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>No. ManyHandz takes the repetitive answering — phone calls, website chat, screening, the usual questions, and messages. Judgement, relationships, and decisions stay with your people. You set when a call transfers to the team and who gets the message.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              What if the AI gets something wrong?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>It hands off. If it isn’t sure, it transfers the call or takes a message instead of guessing. You stay in control of the notify and handoff rules, so a person handles anything that needs a decision. It won’t invent a price or promise a time you haven’t set up.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="faq-item reveal reveal-delay-1">
-        <button class="faq-question" aria-expanded="false">
-          Does ManyHandz work when I'm not online?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>Yes. Your AI answers calls and chats with website visitors around the clock — even when you're asleep, on vacation, or just busy.</p>
+      <div class="faq-group">
+        <div class="faq-group-label">Day to day</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              What does it actually do, day to day?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>ManyHandz is an AI phone answering service and a website chat widget, both reading one knowledge base: your services, hours, FAQs, and tone. Day to day it answers calls 24/7, chats with site visitors, screens, answers the usual questions, takes a message, and transfers VIPs. It keeps working when you’re on a job, asleep, or on vacation.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Do we have to change the systems we already use?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>No. Self-serve phone and chat go live on their own — we scan your website and you can be answering in minutes, with nothing to migrate. Full business setup fits around how you already work, and we connect job software where we support it. If we can’t connect something, we’ll say so. If you already use Grok Bot with Gmail, it can share the same knowledge base for inbox work.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="faq-item reveal reveal-delay-1">
-        <button class="faq-question" aria-expanded="false">
-          What can ManyHandz actually do for my business?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>ManyHandz answers your phone calls 24/7 and chats with website visitors — all using a knowledge base that knows your services, hours, FAQs, and how you like to communicate.</p>
+      <div class="faq-group">
+        <div class="faq-group-label">Cost</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              What does it cost?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>Self-serve prices are on the page. Small Business is $499/mo USD for 600 minutes of phone talk time. Big Business is $999/mo USD for 2,000 minutes. Website chat is included on both. There’s a 14-day free trial, no setup fee, and you can cancel anytime. Full business setup — systems, go-live, and ongoing support — is custom. Talk to us. There is no sticker price on that path.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Can I cancel at any time?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>Yes. No lock-in and no cancellation fee on the self-serve plans. Cancel any time and we permanently delete your data on request.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="faq-item reveal reveal-delay-2">
-        <button class="faq-question" aria-expanded="false">
-          Is my business data safe with ManyHandz?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>Yes. Every ManyHandz customer runs in a completely isolated environment — your data is never mixed with other customers. Your conversations and business information are never used to train AI models, and you can request full data deletion at any time.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal reveal-delay-2">
-        <button class="faq-question" aria-expanded="false">
-          How long does setup take?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>Most customers are up and running in under 5 minutes. There's nothing to install or configure — you sign up, we scan your website, and you're live with a phone number and/or chat snippet.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal reveal-delay-3">
-        <button class="faq-question" aria-expanded="false">
-          Do I get a US phone number?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>Yes. US businesses get a dedicated local US phone number. Sign up and you can be live in about 5 minutes.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal reveal-delay-3">
-        <button class="faq-question" aria-expanded="false">
-          Can I cancel at any time?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>Yes. No lock-in contracts, no cancellation fees. Cancel any time and your data will be permanently deleted on request.</p>
-        </div>
-      </div>
-
-      <div class="faq-item reveal reveal-delay-3">
-        <button class="faq-question" aria-expanded="false">
-          Can I use Grok Bot with my own Gmail?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" role="region">
-          <p>Yes. ManyHandz is phone answering and website chat. If you use Grok Bot with your own Gmail, you can connect ManyHandz so Grok uses the same knowledge base for inbox work.</p>
+      <div class="faq-group">
+        <div class="faq-group-label">Getting started</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              How do we get started?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>Three ways. Call the AI and hear a live demo — about two minutes, no sales pitch. Or start a 14-day trial: we scan your site and you’re live in minutes with a local US phone number and a chat snippet. Or choose Full business setup if you want us to map the process, train the office, and go live with you.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Is there ongoing support?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>Yes. Every plan includes product support. Full business setup adds an advisor after go-live — someone who already knows how your office runs, and stays with you as you grow.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Who is this built for?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>Contractors and small service businesses that can’t afford a missed call — HVAC, plumbing, electrical, and similar trades — and don’t want a full-time receptionist just to cover after-hours. US businesses get a dedicated local US phone number.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Is my business data safe with ManyHandz?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <div>
+                <p>Yes. Every customer runs in a completely isolated environment — your data is never mixed with anyone else’s. Conversations and business information are never used to train AI models, and you can request full deletion at any time.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1207,7 +1399,7 @@
     <div class="section-header reveal">
       <span class="section-eyebrow">Book a callback</span>
       <h2>Get a call from a specialist</h2>
-      <p>Not sure if ManyHandz is right for you? Request a callback and we'll be straight with you.</p>
+      <p>Not sure if ManyHandz is right for you? Request a callback and we'll be straight with you. Asking about Full business setup? Say so — we'll talk through systems, go-live, and support. No sticker price on that path.</p>
     </div>
     <div class="contact-wrapper">
       <div class="contact-info reveal">
@@ -1394,10 +1586,9 @@
       },
       {
         "@type": "Offer",
-        "name": "Enterprise",
-        "price": "0",
+        "name": "Full business setup",
         "priceCurrency": "USD",
-        "description": "Custom pricing — contact us"
+        "description": "Custom — talk to us. Done with you: systems, go-live, and ongoing support. No public price."
       }
     ]
   },
@@ -1407,18 +1598,74 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is ManyHandz?",
+        "name": "Will this replace my office staff?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ManyHandz is an AI phone answering service and website chat widget — both powered by one knowledge base that knows your business inside out. Set up in about 5 minutes."
+          "text": "No. ManyHandz takes the repetitive answering — phone calls, website chat, screening, the usual questions, and messages. Judgement, relationships, and decisions stay with your people. You set when a call transfers to the team and who gets the message."
         }
       },
       {
         "@type": "Question",
-        "name": "Does ManyHandz work when I'm not online?",
+        "name": "What if the AI gets something wrong?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Your AI answers calls and chats with website visitors around the clock — even when you're asleep, on vacation, or just busy."
+          "text": "It hands off. If it isn't sure, it transfers the call or takes a message instead of guessing. You stay in control of the notify and handoff rules, so a person handles anything that needs a decision."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does it actually do, day to day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ManyHandz answers the phone 24/7 and chats on your website from one knowledge base — services, hours, FAQs, and tone. It screens, answers common questions, takes messages, and transfers VIPs, including when you are on a job or on vacation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do we have to change the systems we already use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Self-serve phone and chat go live on their own after a website scan. Full business setup fits around how you already work and connects job software where we support it. Grok Bot can share the same knowledge base if you use it with Gmail."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does it cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Small Business is $499/mo USD for 600 minutes. Big Business is $999/mo USD for 2,000 minutes. Website chat is included. 14-day free trial, no setup fee, cancel anytime. Full business setup is custom — talk to us. No sticker price on that path."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I cancel at any time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. No lock-in and no cancellation fee on the self-serve plans. Cancel any time and we permanently delete your data on request."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do we get started?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Call the AI for a live demo, start a 14-day trial and go live in minutes from a website scan with a local US phone number, or choose Full business setup if you want us to map the process and go live with you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there ongoing support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every plan includes product support. Full business setup adds an advisor after go-live."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is this built for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Contractors and small service businesses that can't afford a missed call — HVAC, plumbing, electrical, and similar trades. US businesses get a dedicated local US phone number."
         }
       },
       {
@@ -1426,47 +1673,7 @@
         "name": "Is my business data safe with ManyHandz?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Every ManyHandz customer runs in a completely isolated environment — your data is never mixed with other customers. Your conversations and business information are never used to train AI models, and you can request full data deletion at any time."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does setup take?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Most customers are up and running in about 5 minutes. There's nothing to install or configure — you sign up, we scan your website, and you're live with a phone number and/or chat snippet."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I get a US phone number?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. US businesses get a dedicated local US phone number. Sign up and you can be live in about 5 minutes."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What can ManyHandz actually do for my business?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ManyHandz answers your phone calls 24/7 and chats with website visitors — all using a knowledge base that knows your services, hours, FAQs, and how you like to communicate."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I cancel ManyHandz at any time?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. There are no lock-in contracts. You can cancel your ManyHandz subscription at any time and your data will be permanently deleted on request."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use Grok Bot with my own Gmail?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. ManyHandz is phone answering and website chat. If you use Grok Bot with your own Gmail, you can connect ManyHandz so Grok uses the same knowledge base for inbox work."
+          "text": "Yes. Every customer runs in a completely isolated environment. Your data is never mixed with anyone else's, never used to train AI models, and you can request full deletion at any time."
         }
       }
     ]
