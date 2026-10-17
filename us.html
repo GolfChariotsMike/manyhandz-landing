@@ -697,6 +697,7 @@
       .typewriter-word { white-space: normal; }
     }
   </style>
+  <script src="/js/meta-pixel.js"></script>
 </head>
 <body>
 
@@ -1332,6 +1333,7 @@
     }).then(r => {
       document.getElementById('contact-form-wrap').style.display = 'none';
       document.getElementById('thank-you').style.display = 'block';
+      if (window.mhPixel && typeof window.mhPixel.lead === 'function') window.mhPixel.lead();
     }).catch(() => {
       alert('Something went wrong. Email us directly at info@manyhandz.ai');
     });
